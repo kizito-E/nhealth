@@ -1,0 +1,13 @@
+*/logs/log-*.php
+*/logs/!index.html
+*/logs/*
+*/cache/*
+*/cache/!index.html
+*/cache/!.htaccess
+*/sessions/ci_session*
+.DS_Store
+Thumbs.db
+._*
+*.old
+/images/*
+.htaccess
