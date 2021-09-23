@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MY_Model extends CI_Model {
+class REST_Model extends CI_Model {
 
     protected $table        = null;
     protected $primary_key  = null;
@@ -13,7 +13,6 @@ class MY_Model extends CI_Model {
     {
         parent::__construct();
 
-        $this->load->library('datatables');
     }
 
 
@@ -137,14 +136,6 @@ class MY_Model extends CI_Model {
 
         return $this->db->get($this->table)->result();
     }
-
-
-    public function fetch_dt($where = [])
-    {
-        $columns = $this->db->list_fields($this->table);
-        return $this->datatables->fetch($this->table, $this->primary_key, $columns, $where);
-    }
-
 
     public function delete($ids, $where = [])
     {

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MY_Session extends CI_Session
+class REST_Session extends CI_Session
 {
     // Для этих URI класс сессий НЕ подключаем
     private $ignore_uris = [

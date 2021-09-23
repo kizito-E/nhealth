@@ -14,7 +14,7 @@ class Event_handlers
         $this->CI->load->model('mailer2_model', 'Mailer2');
         $this->CI->load->model('user2_model', 'User2');
 
-        $this->customName = get_globalsettings("custom_name", "AdFlex");
+        $this->customName = "nHealth";
     }
 
 

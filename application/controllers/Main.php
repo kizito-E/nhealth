@@ -14,6 +14,7 @@ class Main extends CI_Controller
 
     public function index()
     {
+        header("404 Not Found / Unauthorized Access", true, 404);
         exit();
     }
 

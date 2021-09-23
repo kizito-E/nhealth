@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth2_model extends MY_Model {
+class Auth2_model extends REST_Model {
 
     public function __construct()
     {

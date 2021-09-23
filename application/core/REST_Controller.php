@@ -8,7 +8,7 @@
  *
  * @version         4.0.0
  */
-class MY_RestController extends CI_Controller {
+class REST_Controller extends CI_Controller {
     /**
      * This defines the rest format
      * Must be overridden it in a controller so that it is set.

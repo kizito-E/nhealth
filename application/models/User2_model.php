@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User2_model extends MY_Model {
+class User2_model extends REST_Model {
 
     public function __construct()
     {
@@ -134,7 +134,6 @@ class User2_model extends MY_Model {
         return $this->db->update($this->table);
     }
 
-
     public function unban($user)
     {
         $this->db->where('id', $user);
@@ -145,6 +144,5 @@ class User2_model extends MY_Model {
 
         return $this->db->update($this->table);
     }
-
 
 }
