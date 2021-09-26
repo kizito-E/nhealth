@@ -2,13 +2,13 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth2_model extends REST_Model {
+class Auth_model extends REST_Model {
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->table       = config_item('users_table');
+        $this->table       = 'users';
         $this->primary_key = 'id';
         $this->load->library('session');
     }
@@ -45,7 +45,6 @@ class Auth2_model extends REST_Model {
 
     public function logout()
     {
-        event('auth.logout', ['user_id' => $this->session]);
 
         delete_csrf_cookie();
 

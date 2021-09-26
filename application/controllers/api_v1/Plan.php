@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Beneficiaries extends REST_Controller {
+class Plan extends REST_Controller {
 
     /**
      * Constructor

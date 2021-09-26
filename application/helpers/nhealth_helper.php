@@ -3,61 +3,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-if (!function_exists('image')) {
-
-    /**
-     * Image URL and PATH. Does not check file for existence!
-     * @param string $filename
-     * @return object
-     */
-    function image($filename)
-    {
-        return (object) [
-            'url'  => str_replace(['http://', 'https://'], '//', base_url(config_item('images_dir') . '/' . $filename)),
-            'path' => FCPATH . config_item('images_dir') . DIRECTORY_SEPARATOR . $filename
-        ];
-    }
-
-
-}
-
-
-// ------------------------------------------------------------------------
-
-if (!function_exists('with_commission')) {
-
-    /**
-     * Возвращает сумму за вычетом комиссии системы
-     */
-    function with_commission($amount, $percent = null)
-    {
-        $commission = $percent ? $percent : get_globalsettings('comission', 20);
-
-        $per = ($amount / 100) * $commission;
-
-        return round($amount + $per, 5);
-    }
-
-
-}
-// ------------------------------------------------------------------------
-
-if (!function_exists('deduct_commission')) {
-
-    /**
-     * Возвращает сумму за вычетом комиссии системы
-     */
-    function deduct_commission($amount, $percent = null)
-    {
-        $commission = $percent ? $percent : get_globalsettings('comission', 20);
-
-        return round($amount * (100 - $commission) / 100, 5);
-    }
-
-
-}
-// ------------------------------------------------------------------------
-
 if (!function_exists('event')) {
 
 
@@ -245,88 +190,6 @@ if (!function_exists('delete_csrf_cookie')) {
 
 // ------------------------------------------------------------------------
 
-if (!function_exists('__')) {
-
-
-    function __($string = "")
-    {
-        $CI = &get_instance();
-        $CI->load->library('session');
-
-        if (!$CI->session->userdata('id')) {
-            $lang = config_item('default_interface_lang');
-        } else {
-            $lang = get_usersettings('lang', 'en');
-        }
-
-        $locale_file = APPPATH . "language/locales/{$lang}.php";
-
-        if (!file_exists($locale_file)) {
-            return $string;
-        }
-
-        $translator = new \Gettext\Translator();
-        $translator->loadTranslations($locale_file);
-
-        return $translator->gettext($string);
-    }
-
-
-}
-
-// ------------------------------------------------------------------------
-
-if (!function_exists('_e')) {
-
-
-    function _e($string = "")
-    {
-        $CI = &get_instance();
-        $CI->load->library('session');
-
-        if (!$CI->session->userdata('id')) {
-            $lang = config_item('default_interface_lang');
-        } else {
-            $lang = get_usersettings('lang', 'en');
-        }
-
-        $locale_file = APPPATH . "language/locales/{$lang}.php";
-
-        if (!file_exists($locale_file)) {
-            echo $string;
-        } //
-        else {
-
-            $translator = new \Gettext\Translator();
-            $translator->loadTranslations($locale_file);
-
-            echo $translator->gettext($string);
-        }
-    }
-
-
-}
-
-// ------------------------------------------------------------------------
-
-if (!function_exists('compile_translations')) {
-
-
-    function compile_translations()
-    {
-        foreach (glob(APPPATH . "language/locales/*.po") as $value) {
-
-            $translations = \Gettext\Translations::fromPoFile($value);
-            $lang         = basename($value, '.po') . '.php';
-            $translations->toPhpArrayFile(dirname($value) . DIRECTORY_SEPARATOR . $lang);
-        }
-    }
-
-
-}
-
-// ------------------------------------------------------------------------
-
 if (!function_exists('in_array_array')) {
 
 
@@ -381,40 +244,6 @@ if (!function_exists('validate_expiration_token')) {
 
 
 }
-
-// ------------------------------------------------------------------------
-
-if (!function_exists('calculate_ctr')) {
-
-    function calculate_ctr($views, $clicks)
-    {
-        $views = max(1, $views);
-
-        $ctr = ($clicks / $views) * 100;
-
-        return round($ctr, 2);
-    }
-
-
-}
-
-
-// ------------------------------------------------------------------------
-
-if (!function_exists('calculate_cpm')) {
-
-    function calculate_cpm($costs, $views)
-    {
-        if ($costs == 0 || $views == 0) {
-            return 0;
-        }
-
-        return round(($costs / $views) * 1000, 4);
-    }
-
-
-}
-
 
 // ------------------------------------------------------------------------
 
@@ -543,86 +372,6 @@ if (!function_exists('menu_item')) {
 
 //---------------------------------------------------------------
 
-if (!function_exists('get_globalsettings')) {
-
-
-    function get_globalsettings($key = null, $default = null)
-    {
-        $CI = &get_instance();
-
-        if (!isset($CI->settings2_model)) {
-            $CI->load->model('settings2_model');
-        }
-
-        if (is_null($key)) {
-            return $CI->settings2_model->system()->all();
-        } else {
-            return $CI->settings2_model->system()->get($key, $default);
-        }
-    }
-
-
-}
-
-if (!function_exists('set_globalsettings')) {
-
-
-    function set_globalsettings($key, $value)
-    {
-        $CI = &get_instance();
-
-        if (!isset($CI->settings2_model)) {
-            $CI->load->model('settings2_model');
-        }
-
-        return $CI->settings2_model->system()->set($key, $value);
-    }
-
-
-}
-
-if (!function_exists('get_usersettings')) {
-
-
-    function get_usersettings($key = "", $default = null)
-    {
-        $CI = &get_instance();
-
-        $user_id = isset(userdata()->id) ? userdata()->id : null;
-
-        if (!isset($CI->settings2_model)) {
-            $CI->load->model('settings2_model');
-        }
-
-        if (!$key) {
-            return $CI->settings2_model->user($user_id)->all();
-        } else {
-            return $CI->settings2_model->user($user_id)->get($key, $default);
-        }
-    }
-
-
-}
-
-if (!function_exists('set_usersettings')) {
-
-
-    function set_usersettings($key, $value)
-    {
-        $CI = &get_instance();
-
-        $user_id = userdata()->id;
-
-        if (!isset($CI->settings2_model)) {
-            $CI->load->model('settings2_model');
-        }
-
-        return $CI->settings2_model->user($user_id)->set($key, $value);
-    }
-
-
-}
-
 if (!function_exists('check_auth')) {
 
 
@@ -659,7 +408,7 @@ if (!function_exists('userdata')) {
         static $ret = null;
 
         if (!$ret) {
-            $ret = $CI->db->get_where(config_item('users_table'), ['id' => $CI->session->id])->row();
+            $ret = $CI->db->get_where('users', ['id' => $CI->session->id])->row();
         }
 
         return $ret;
@@ -683,7 +432,7 @@ if (!function_exists('admindata')) {
         static $ret = null;
 
         if (!$ret) {
-            $ret = $CI->db->get_where(config_item('users_table'), ['role' => 'administrator'])->row(1);
+            $ret = $CI->db->get_where('users', ['role' => 'administrator'])->row(1);
         }
 
         return $ret;
@@ -699,39 +448,6 @@ if (!function_exists('is_administrator')) {
     function is_administrator()
     {
         return isset(userdata()->role) && userdata()->role == 'administrator';
-    }
-
-
-}
-
-if (!function_exists('is_webmaster')) {
-
-
-    function is_webmaster()
-    {
-        return isset(userdata()->subrole) && userdata()->subrole == 'webmaster';
-    }
-
-
-}
-
-if (!function_exists('is_advertiser')) {
-
-
-    function is_advertiser()
-    {
-        return isset(userdata()->subrole) && userdata()->subrole == 'advertiser';
-    }
-
-
-}
-
-if (!function_exists('is_moderator')) {
-
-
-    function is_moderator()
-    {
-        return isset(userdata()->subrole) && userdata()->subrole == 'moderator';
     }
 
 

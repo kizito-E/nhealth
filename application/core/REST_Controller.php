@@ -248,13 +248,6 @@ class REST_Controller extends CI_Controller {
     {
         parent::__construct();
 
-        $this->load->model([
-            'auth2_model'      => 'Auth2',
-            'user2_model'      => 'User2',
-            'mailer2_model'    => 'Mailer2',
-            'settings2_model'  => 'Settings2',
-        ]);
-
         // Set the default value of global xss filtering. Same approach as CodeIgniter 3
         $this->_enable_xss = ($this->config->item('global_xss_filtering') === true);
 

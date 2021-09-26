@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mailer2_model extends CI_Model {
+class Mailer_model extends CI_Model {
 
     public function __construct()
     {
