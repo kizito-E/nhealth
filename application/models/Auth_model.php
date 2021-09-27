@@ -27,17 +27,11 @@ class Auth_model extends REST_Model {
             'password' => superhash($password),
         ]);
 
-        if (!$userdata) {
-            throw new Exception(__("Неверный Логин / Пароль"));
-        }
+        if (!$userdata) return "Incorrect email / password";
 
-        if ($userdata->status != 1) {
-            throw new Exception(__("Аккаунт заблокирован!"));
-        }
+        if ($userdata->status != 1) return "User account not active";
 
-        $this->session->set_userdata((array) $userdata);
-
-        event('auth.login', ['user_id' => $userdata]);
+        //$this->session->set_userdata((array) $userdata);
 
         return true;
     }
