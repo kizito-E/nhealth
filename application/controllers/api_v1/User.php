@@ -17,7 +17,7 @@ class User extends REST_Controller {
 
         unset($user_obj->password);
 
-        $this->response($user_obj, self::HTTP_OK);
+        $this->response(['status' => 'success', 'user' => (array) $user_obj], self::HTTP_OK);
     }
 
     public function auth_post()
@@ -103,7 +103,7 @@ class User extends REST_Controller {
             unset($user_obj->password);
         }
 
-        $this->response($user_objs, self::HTTP_OK);
+        $this->response(['status' => 'success', 'users' => (array) $user_objs], self::HTTP_OK);
     }
 
 }
