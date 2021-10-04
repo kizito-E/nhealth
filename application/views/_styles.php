@@ -5,5 +5,5 @@
 <link rel="stylesheet" href="/assets/css/vendor.css">
 <link rel="stylesheet" href="/assets/css/app.css">
 
-<?php print_js_var('timezone', get_usersettings('timezone', 'Europe/London')); ?>
-<?php print_js_var('lang', get_usersettings('lang', 'en')); ?>
+<?php print_js_var('timezone', 'Africa/Lagos'); ?>
+<?php print_js_var('lang', 'en'); ?>

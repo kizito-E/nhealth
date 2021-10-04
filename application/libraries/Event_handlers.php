@@ -10,7 +10,7 @@ class Event_handlers
     public function __construct()
     {
         $this->CI = &get_instance();
-        $this->CI->load->model('mailer_model', 'Mailer');
+        $this->CI->load->model('mailer2_model', 'Mailer');
         $this->CI->load->model('user_model', 'User');
     }
 
