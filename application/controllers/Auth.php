@@ -221,38 +221,4 @@ class Auth extends MY_Controller
         exit_json();
     }
 
-
-    public function api_change_user_subrole()
-    {
-        if (!$this->Auth2->is_logged()) {
-            exit_json(1, __('Ошибка доступа!'));
-        }
-
-        if (!check_csrf_token()) {
-            exit_json(1, __("Некорректный CSRF токен!"));
-        }
-
-        $to_role = $this->input->post('to_role');
-
-        if (is_administrator() === true) {
-
-            if (in_array($to_role, ['administrator', 'webmaster', 'advertiser', 'moderator'])) {
-                $this->User2->set_subrole(userdata()->id, $to_role);
-                $this->session->set_userdata('subrole', $to_role);
-            } else {
-                exit_json(1, __('Ошибка!'));
-            }
-        } else {
-            if (in_array($to_role, ['webmaster', 'advertiser'])) {
-                $this->User2->set_subrole(userdata()->id, $to_role);
-                $this->session->set_userdata('subrole', $to_role);
-            } else {
-                exit_json(1, __('Ошибка!'));
-            }
-        }
-
-        exit_json();
-    }
-
-
 }

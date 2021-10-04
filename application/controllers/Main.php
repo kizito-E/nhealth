@@ -15,18 +15,6 @@ class Main extends MY_Controller
 
     public function index()
     {
-        if (is_webmaster()) {
-            redirect("/webmaster");
-        }
-
-        if (is_advertiser()) {
-            redirect("/advertiser");
-        }
-
-        if (is_moderator()) {
-            redirect("/moderator");
-        }
-
         if (is_administrator()) {
             redirect("/administrator");
         }

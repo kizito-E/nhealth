@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><?php echo get_globalsettings('custom_name', 'AdFlex')?> | <?php _e('Авторизация'); ?></title>
+        <title>nHealth | e-Health Insurance</title>
         <meta name="csrf" content="<?php csrf_token(); ?>">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -18,7 +18,7 @@
 
             <div class="login-logo">
                 <a href="/auth/login/">
-                  <img class="auth-logo" src="<?php echo get_globalsettings('custom_logo', '/assets/imgs/adflex-logo.png')?>">
+                  <!--<img class="auth-logo" src="">-->
                 </a>
             </div>
 
@@ -44,7 +44,7 @@
 
                     <div class="col-xs-12 form-group">
 
-                        <button @click="logIn" class="btn btn-primary btn-block btn-flat">
+                        <button @click="logIn" disabled class="btn btn-primary btn-block btn-flat">
                             <i v-if="active_button" class="fa fa-circle-o-notch fa-spin fa-fw"></i>
                             <span v-else><?php _e('Вход'); ?></span>
                         </button>
@@ -53,44 +53,19 @@
 
                 </div>
 
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-xs-12">
 
-                        <? if (get_globalsettings('users_registration', 1)): ?>
-
-                            <div class="pull-left">
-                                <a href="/auth/register/" class="text-center"><?php _e('Регистрация'); ?></a>
-                            </div>
-
-                        <? endif; ?>
+                        <div class="pull-left">
+                            <a href="/auth/register/" class="text-center"><?php _e('Регистрация'); ?></a>
+                        </div>
 
                         <div class="pull-right">
                             <a href="/auth/forgot/"><?php _e('Забыли пароль?'); ?></a>
                         </div>
 
-                        <div v-if="show_autologin_box" class="autologin-box" style="margin-top: 50px;">
-
-                            <button @click="loginAdmin()" class="btn btn-danger btn-block btn-flat margin-bottom">
-                                Go to Administrator account
-                            </button>
-
-                            <button @click="loginAdvertiser()" class="btn btn-success btn-block btn-flat margin-bottom">
-                                Go to Advertiser account
-                            </button>
-
-                            <button @click="loginWebmaster()" class="btn btn-primary btn-block btn-flat margin-bottom">
-                                Go to Webmaster account
-                            </button>
-
-                            <button @click="loginModerator()" class="btn bg-purple btn-block btn-flat margin-bottom">
-                                Go to Moderator account
-                            </button>
-
-                        </div>
-
-
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
 
