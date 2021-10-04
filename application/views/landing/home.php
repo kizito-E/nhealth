@@ -65,7 +65,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="#appointment" class="appointment-btn scrollto">Sign in</a>
+      <a href="/auth/login" class="appointment-btn scrollto">Sign in</a>
 
     </div>
   </header><!-- End Header -->
