@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_model extends REST_Model {
+class User_model extends MY_Model {
 
     public function __construct()
     {
