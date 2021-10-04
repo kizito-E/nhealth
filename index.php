@@ -53,8 +53,8 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-//define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-define('ENVIRONMENT', 'production');
+define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+//define('ENVIRONMENT', 'production');
 define('SCRIPT_VERSION', '1');
 /*
  * ---------------------------------------------------------------
@@ -263,31 +263,6 @@ if (!isset($view_folder[0]) && is_dir(APPPATH . 'views' . DIRECTORY_SEPARATOR)) 
 }
 
 define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
-
-/*
- * --------------------------------------------------------------------
- * Check AdFlex install
- * --------------------------------------------------------------------
- */
-
-if (!file_exists(FCPATH . '.htaccess')) {
-    exit('".htaccess" file not found!<br>'
-            . 'Most likely, when unpacking the AdFlex archive, you did not notice it,<br>'
-            . 'and did not upload it to the server. Look for it in the archive, it\'s there.<br>'
-            . 'On some operating systems, it can be hidden.<br>'
-            . 'In this case, turn on the display of hidden files.');
-}
-
-if (!file_exists(FCPATH . 'config.php')) {
-    exit('Configuration file (config.php) not found.');
-}
-
-$GLOBALS['adflex'] = include_once FCPATH . 'config.php';
-
-if (empty($GLOBALS['adflex']['db_host']) || empty($GLOBALS['adflex']['db_user']) || empty($GLOBALS['adflex']['db_name'])) {
-    header('Location: install.php');
-    exit;
-}
 
 /*
  * --------------------------------------------------------------------

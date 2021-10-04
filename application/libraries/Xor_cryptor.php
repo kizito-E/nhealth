@@ -14,7 +14,7 @@ class Xor_cryptor {
     public function encode($str, $key = null)
     {
         if ($key === null) {
-            $key = sha1(md5($GLOBALS['adflex']['appkey']));
+            $key = sha1(md5($_SERVER['APP_KEY']));
         }
 
         $key_hash = sha1($key);

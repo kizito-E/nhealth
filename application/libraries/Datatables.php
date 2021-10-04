@@ -11,10 +11,10 @@ class Datatables {
 
     public function __construct()
     {
-        self::$db_host = $GLOBALS['adflex']['db_host'];
-        self::$db_name = $GLOBALS['adflex']['db_name'];
-        self::$db_user = $GLOBALS['adflex']['db_user'];
-        self::$db_pass = $GLOBALS['adflex']['db_pass'];
+        self::$db_host = $_SERVER['DB_HOST'];
+        self::$db_name = $_SERVER['DB_NAME'];
+        self::$db_user = $_SERVER['DB_USER'];
+        self::$db_pass = $_SERVER['DB_PASSWORD'];
     }
 
 

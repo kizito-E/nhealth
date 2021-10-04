@@ -76,10 +76,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'          => '',
-    'hostname'     => $GLOBALS['adflex']['db_host'],
-    'username'     => $GLOBALS['adflex']['db_user'],
-    'password'     => $GLOBALS['adflex']['db_pass'],
-    'database'     => $GLOBALS['adflex']['db_name'],
+    'hostname'     => $_SERVER['DB_HOST'],
+    'username'     => $_SERVER['DB_USER'],
+    'password'     => $_SERVER['DB_PASSWORD'],
+    'database'     => $_SERVER['DB_NAME'],
     'dbdriver'     => 'mysqli',
     'dbprefix'     => '',
     'pconnect'     => FALSE,

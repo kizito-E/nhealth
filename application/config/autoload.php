@@ -59,7 +59,7 @@ $autoload['packages'] = array();
   |
   |	$autoload['libraries'] = array('user_agent' => 'ua');
  */
-$autoload['libraries'] = array('database', 'event', 'request', 'validation');
+$autoload['libraries'] = array('database', 'event', 'validation');
 
 /*
   | -------------------------------------------------------------------
@@ -90,7 +90,7 @@ $autoload['drivers'] = array();
   |
   |	$autoload['helper'] = array('url', 'file');
  */
-$autoload['helper'] = array('security', 'cookie', 'url', 'adflex', 'date');
+$autoload['helper'] = array('security', 'cookie', 'url', 'nhealth', 'date');
 
 /*
   | -------------------------------------------------------------------
@@ -104,13 +104,7 @@ $autoload['helper'] = array('security', 'cookie', 'url', 'adflex', 'date');
   | config files.  Otherwise, leave it blank.
   |
  */
-$autoload['config'] = [
-    'adflex',
-    'adflex_ads',
-    'adflex_antifraud',
-    'adflex_money',
-    'adflex_targeting'
-];
+$autoload['config'] = [];
 
 /*
   | -------------------------------------------------------------------
