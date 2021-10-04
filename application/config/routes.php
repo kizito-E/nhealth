@@ -55,6 +55,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller']   = 'main';
 $route['404_override']         = '';
 $route['translate_uri_dashes'] = false;
-//$route['bannerlist/(:num)']    = "bannerlist/index/$1";
-//$route['adslist/(:num)']       = "adslist/index/$1";
-//$route['adunits/(:num)']       = "adunits/index/$1";

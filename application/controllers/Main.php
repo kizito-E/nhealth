@@ -13,6 +13,11 @@ class Main extends CI_Controller
 
     public function index()
     {
+        $this->load->view('/landing/home');
+    }
+
+    public function auth()
+    {
         check_auth() OR redirect("/auth/login/");
 
         if (is_administrator()) {
@@ -20,11 +25,6 @@ class Main extends CI_Controller
         }
 
         redirect("/auth/login/");
-    }
-
-    public function home()
-    {
-
     }
 
 }
