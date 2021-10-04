@@ -51,52 +51,97 @@
                 <div class="doc-body row" >
                     <div class="doc-content col-md-9 col-12 order-1">
                         <div class="content-inner">
-                            <section id="dashboards" class="doc-section">
-                                <h2 class="section-title">Dashboards</h2>
+                            <section id="authentication" class="doc-section">
+                                <h2 class="section-title">Getting Started</h2>
                                 <div class="section-block">
-                                    <p>Welcome! The screenshots used in this page are taken from <a href="https://themes.3rdwavemedia.com/bootstrap-templates/product/appify-bootstrap-4-admin-template-for-app-developers/" target="_blank">Appify</a>. Appify is a Bootstrap 4 admin template made for app developers.</p>
+                                    <p>Welcome! The nHealth API is currently secured using <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">basic</a> authentication. To access the api, simply pass an authorization header containing a base64 encoding of the provided username and password seperated by a single colon.</p>
+                                    <p>All api requests should be the following URL</p>
+                                    <p><code>https://api.nhealth.site/api_v1</code></p>
+
+                                    <p>Sample authorization request</p>
+                                    <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/ping
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X POST</code></pre>
                         
                                 </div><!--//section-block-->
                                 
                             </section><!--//doc-section-->
                             
                             <section id="app-components" class="doc-section">
-                                <h2 class="section-title">App Components</h2>
+                                <h2 class="section-title">Users</h2>
                                 <div id="projects" class="section-block">
-                                    <h3 class="block-title">Projects</h3>
-                                    <p>Intro goes here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>
+                                    <h3 class="block-title">Create</h3>
+                                    <p>Create a new user account.<br>Endpoint: /user/create<br>Method: POST</p>
                                     <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/create
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    ""
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>first_name</li>
+        										<li>last_name</li>
+        										<li>email</li>
+        										<li>password</li>
+                                                <li>role (one of these: benefactor, hmo, sp, admnin)</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>business_name</li>
+        									</ul>
+                                        </div>
                                     </div><!--//row-->
                                 </div><!--//section-block-->
                                 <div id="discussions" class="section-block">
-                                    <h3 class="block-title">Discussions</h3>
+                                    <h3 class="block-title">User account</h3>
+                                    <p>Get the basic details of a user account.<br>Endpoint: /user/{user_id}<br>Method: GET</p>
                                     <div class="row">
-                                    </div><!--//row-->  
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/{user_id}
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    ""
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
                                 </div><!--//section-block-->
                                 
                                 <div id="members" class="section-block">
-                                    <h3 class="block-title">Members</h3>
-                                    <div class="row">
-                                    </div><!--//row-->  
-                                </div><!--//section-block-->
-                                
-                                <div id="account" class="section-block">
-                                    <h3 class="block-title">User Account</h3>
-                                    <p>Intro goes here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                                    <h3 class="block-title">Authenticate</h3>
                                     <div class="row">
                                     </div><!--//row-->  
                                 </div><!--//section-block-->
                                 
                                  <div id="others" class="section-block">
-                                    <h3 class="block-title">Others</h3>
+                                    <h3 class="block-title">List</h3>
                                     <div class="row">
                                     </div><!--//row-->  
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
                             <section id="ui-components" class="doc-section">
-                                <h2 class="section-title">UI Components</h2>
+                                <h2 class="section-title">Miscellenous</h2>
                                 <div class="section-block">
-                                    <p>appify is packed with building blocks. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. </p>
                                     <div class="row">
                                     </div><!--//row-->
                                 </div><!--//section-block-->
@@ -107,16 +152,15 @@
                     <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
                         <div id="doc-nav" class="doc-nav">
                             <nav id="doc-menu" class="nav doc-menu flex-column sticky">
-                                <a class="nav-link scrollto" href="#dashboards">Dashboards</a>
-                                <a class="nav-link scrollto" href="#app-components">App Components</a>
+                                <a class="nav-link scrollto" href="#authentication">Getting Started</a>
+                                <a class="nav-link scrollto" href="#app-components">User</a>
                                     <nav class="doc-sub-menu nav flex-column">
-                                        <a class="nav-link scrollto" href="#projects">Projects</a>
-                                        <a class="nav-link scrollto" href="#discussions">Discussions</a>
-                                        <a class="nav-link scrollto" href="#members">Members</a>
-                                        <a class="nav-link scrollto" href="#account">User Account</a>
-                                        <a class="nav-link scrollto" href="#others">Others</a>
+                                        <a class="nav-link scrollto" href="#projects">Create</a>
+                                        <a class="nav-link scrollto" href="#discussions">User account</a>
+                                        <a class="nav-link scrollto" href="#members">Authenticate</a>
+                                        <a class="nav-link scrollto" href="#others">List</a>
                                     </nav><!--//nav-->
-                                <a class="nav-link scrollto" href="#ui-components">UI Components</a>
+                                <a class="nav-link scrollto" href="#ui-components">Miscellenous</a>
                             </nav><!--//doc-menu-->
                         </div><!--//doc-nav-->
                     </div><!--//doc-sidebar-->
