@@ -2,19 +2,19 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Main extends MY_Controller
+class Main extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
 
-        check_auth() OR redirect("/auth/login/");
     }
-
 
     public function index()
     {
+        check_auth() OR redirect("/auth/login/");
+
         if (is_administrator()) {
             redirect("/administrator");
         }
@@ -22,5 +22,9 @@ class Main extends MY_Controller
         redirect("/auth/login/");
     }
 
+    public function home()
+    {
+
+    }
 
 }
