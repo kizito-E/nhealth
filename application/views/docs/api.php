@@ -55,7 +55,7 @@
                                 <h2 class="section-title">Getting Started</h2>
                                 <div class="section-block">
                                     <p>Welcome! The nHealth API is currently secured using <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">basic</a> authentication. To access the api, simply pass an authorization header containing a base64 encoding of the provided username and password seperated by a single colon.</p>
-                                    <p>All api requests should be the following URL</p>
+                                    <p>All api requests should be made to the following URL</p>
                                     <p><code>https://api.nhealth.site/api_v1</code></p>
 
                                     <p>Sample authorization request</p>
@@ -69,7 +69,7 @@
                             </section><!--//doc-section-->
                             
                             <section id="app-components" class="doc-section">
-                                <h2 class="section-title">Users</h2>
+                                <h2 class="section-title">User</h2>
                                 <div id="projects" class="section-block">
                                     <h3 class="block-title">Create</h3>
                                     <p>Create a new user account.<br>Endpoint: /user/create<br>Method: POST</p>
@@ -79,12 +79,20 @@
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/create
 -H "Authorization: Bearer BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
+-d "{
+    "first_name": "David",
+    "last_name": "Edijala",
+    "email": "davided@gmail.com",
+    "password": "Pass755003",
+    "role": "admin"
+    }"
 -X POST</code></pre>
                                         </div>
                                         <div class="col-md-6 col-12 code-block">
                                         <p>Sample response</p>
                                             <pre class="language-json"><code>{
-    ""
+    "status": "success",
+    "user_id": "2"
 }</code></pre>
                                         </div>
                                     </div><!--//row-->
@@ -113,7 +121,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
-                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/{user_id}
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/2
 -H "Authorization: Bearer BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
@@ -121,7 +129,19 @@
                                         <div class="col-md-6 col-12 code-block">
                                         <p>Sample response</p>
                                             <pre class="language-json"><code>{
-    ""
+    "status": "success",
+    "user": {
+        "id": "2",
+        "first_name": "David",
+        "last_name": "Edijala",
+        "business_name": "",
+        "email": "davided@gmail.com",
+        "role": "admin",
+        "hmo_id": "0",
+        "plan_id": "0",
+        "status": "1",
+        "created": "2021-10-05 13:06:18"
+    }
 }</code></pre>
                                         </div>
                                     </div><!--//row-->
@@ -129,14 +149,87 @@
                                 
                                 <div id="members" class="section-block">
                                     <h3 class="block-title">Authenticate</h3>
+                                    <p>Verify a users' login credentials.<br>Endpoint: /user/auth<br>Method: POST</p>
                                     <div class="row">
-                                    </div><!--//row-->  
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/auth
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "email": "davided@gmail.com",
+    "password": "Pass755003"
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success"
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>email</li>
+        										<li>password</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+                                                <li>none</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
                                 </div><!--//section-block-->
                                 
                                  <div id="others" class="section-block">
                                     <h3 class="block-title">List</h3>
+                                    <p>List all user accounts in the system.<br>Endpoint: /user/list<br>Method: GET</p>
                                     <div class="row">
-                                    </div><!--//row-->  
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/list
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "users": [
+        {
+            "id": "1",
+            "first_name": "Elvis",
+            "last_name": "Obioha",
+            "business_name": "",
+            "email": "elvis@elviskizito.com",
+            "role": "benefactor",
+            "hmo_id": "0",
+            "plan_id": "0",
+            "status": "1",
+            "created": "2021-09-26 20:15:32"
+        },
+        {
+            "id": "2",
+            "first_name": "David",
+            "last_name": "Edijala",
+            "business_name": "",
+            "email": "davided@gmail.com",
+            "role": "admin",
+            "hmo_id": "0",
+            "plan_id": "0",
+            "status": "1",
+            "created": "2021-10-05 13:06:18"
+        }
+    ]
+}</code></pre>
+                                        </div>
+                                    </div><!--//row--> 
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
                             <section id="ui-components" class="doc-section">
