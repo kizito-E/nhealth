@@ -298,6 +298,177 @@
                                 </div><!--//section-block-->
 
                             </section>
+
+                            <section id="sub" class="doc-section">
+                                <h2 class="section-title">Subscription</h2>
+                                <div id="create-sub" class="section-block">
+                                    <h3 class="block-title">Create</h3>
+                                    <p>Create a new subscription.<br>Endpoint: /subscription/create<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/create
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "user_id": 1,
+    "plan_id": 3,
+    "hmo_id": 4
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "subscription_id": "2"
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>user_id</li>
+        										<li>plan_id</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>hmo_id (Optionally assign user a new HMO)</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+
+                                <div id="update-sub" class="section-block">
+                                    <h3 class="block-title">Update</h3>
+                                    <p>Update an existing subscription with a new plan.<br>Endpoint: /subscription/update<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/update
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "subscription_id": 4,
+    "user_id": 1,
+    "new_plan_id": 2
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "subscription": {
+        "id": "4",
+        "plan_id": "2",
+        "user_id": "1",
+        "created": "2021-10-06 12:42:01"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>subscription_id</li>
+        										<li>user_id</li>
+        										<li>new_plan_id</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>none</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+
+                                <div id="get-sub" class="section-block">
+                                    <h3 class="block-title">Get Subscription</h3>
+                                    <p>Get the basic details of a subscription.<br>Endpoint: /subscription/{subscription_id}<br>Method: GET</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/2
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "subscription": {
+        "id": "1",
+        "plan_id": "2",
+        "user_id": "1",
+        "created": "2021-10-06 11:59:17"
+    },
+    "plan": {
+        "id": "2",
+        "name": "gold",
+        "amount": "25000.00"
+    },
+    "user": {
+        "id": "1",
+        "first_name": "Elvis",
+        "last_name": "Obioha",
+        "business_name": "",
+        "email": "elvis@elviskizito.com",
+        "role": "benefactor",
+        "hmo_id": "0",
+        "plan_id": "0",
+        "subscription_id": "0",
+        "status": "1",
+        "created": "2021-09-26 21:08:51"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+                                
+                                 <div id="list-subs" class="section-block">
+                                    <h3 class="block-title">List</h3>
+                                    <p>List all subscriptions.<br>Endpoint: /subscription/list<br>Method: GET</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/list
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>
+{
+    "status": "success",
+    "subscriptions": [
+        {
+            "id": "1",
+            "plan_id": "2",
+            "user_id": "1",
+            "created": "2021-10-06 11:59:17"
+        },
+	{
+            "id": "2",
+            "plan_id": "3",
+            "user_id": "2",
+            "created": "2021-10-06 8:59:17"
+        }
+    ]
+}</code></pre>
+                                        </div>
+                                    </div><!--//row--> 
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+
                             <section id="ui-components" class="doc-section">
                                 <h2 class="section-title">Miscellenous</h2>
                                 <div class="section-block">
@@ -323,6 +494,13 @@
                                     <nav class="doc-sub-menu nav flex-column">
                                         <a class="nav-link scrollto" href="#get-plan">Get plan</a>
                                         <a class="nav-link scrollto" href="#list-plans">List</a>
+                                    </nav><!--//nav-->
+                                <a class="nav-link scrollto" href="#sub">Subscription</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#create-sub">Create</a>
+                                        <a class="nav-link scrollto" href="#update-sub">Update</a>
+                                        <a class="nav-link scrollto" href="#get-sub">Get Subscription</a>
+                                        <a class="nav-link scrollto" href="#list-subs">List</a>
                                     </nav><!--//nav-->
                                 <a class="nav-link scrollto" href="#ui-components">Miscellenous</a>
                             </nav><!--//doc-menu-->
