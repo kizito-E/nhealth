@@ -232,6 +232,72 @@
                                     </div><!--//row--> 
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
+
+                            <section id="plan" class="doc-section">
+                                <h2 class="section-title">Plan</h2>
+                                <div id="get-plan" class="section-block">
+                                    <h3 class="block-title">Get a plan</h3>
+                                    <p>Get the basic details of a plan.<br>Endpoint: /plan/{plan_id}<br>Method: GET</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/plan/2
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "plan": {
+        "id": "2",
+        "name": "gold",
+        "amount": "25000.00"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+
+                                <div id="list-plans" class="section-block">
+                                    <h3 class="block-title">List plans</h3>
+                                    <p>Get details of all available plans.<br>Endpoint: /plan/list<br>Method: GET</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/plan/list
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "plans": [
+        {
+            "id": "1",
+            "name": "basic",
+            "amount": "5000.00"
+        },
+        {
+            "id": "2",
+            "name": "gold",
+            "amount": "25000.00"
+        },
+        {
+            "id": "3",
+            "name": "platinum",
+            "amount": "50000.00"
+        }
+    ]
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+
+                            </section>
                             <section id="ui-components" class="doc-section">
                                 <h2 class="section-title">Miscellenous</h2>
                                 <div class="section-block">
@@ -252,6 +318,11 @@
                                         <a class="nav-link scrollto" href="#discussions">User account</a>
                                         <a class="nav-link scrollto" href="#members">Authenticate</a>
                                         <a class="nav-link scrollto" href="#others">List</a>
+                                    </nav><!--//nav-->
+                                <a class="nav-link scrollto" href="#plan">Plan</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#get-plan">Get plan</a>
+                                        <a class="nav-link scrollto" href="#list-plans">List</a>
                                     </nav><!--//nav-->
                                 <a class="nav-link scrollto" href="#ui-components">Miscellenous</a>
                             </nav><!--//doc-menu-->

@@ -11,7 +11,7 @@
 body {
   font-family: 'Open Sans', arial, sans-serif;
   color: #494d55;
-  font-size: 14px;
+  font-size: 15.5px !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -971,7 +971,7 @@ select {
 
 .doc-sub-menu .nav-link {
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 14.25px !important;
   display: block;
   color: #616670;
   padding: 0;
