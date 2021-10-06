@@ -11,13 +11,24 @@ class Plan extends REST_Controller {
         parent::__construct();
     }
 
-    public function new_post(){
+    public function index_get($id)
+    {
+        if (!is_numeric($id)) $this->response(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
 
-        $res = [
-            'status'    => 'Failed',
-        ];
-        $this->response($res, $http_code = 500);
+        $plan_obj = $this->Plan->get(['id' => $id]);
 
+        if (!$plan_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        $this->response(['status' => 'success', 'plan' => (array) $plan_obj], self::HTTP_OK);
+    }
+
+    public function list_get()
+    {
+        $plan_objs = $this->Plan->fetch();
+
+        if (!$plan_objs) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        $this->response(['status' => 'success', 'plans' => (array) $plan_objs], self::HTTP_OK);
     }
 
 }
