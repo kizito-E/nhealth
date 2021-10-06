@@ -93,6 +93,56 @@ class User extends REST_Controller {
 
     }
 
+    public function assign_hmo_post()
+    {
+        $params = $this->post();
+
+        $this->validation->set_data($params);
+        $this->validation->make([
+            "user_id" =>  "trim|required|numeric",
+            "hmo_id"  =>  "trim|required|numeric|differs[user_id]"
+        ], [
+            "user_id.required"  => "Please provide a valid user id!",
+            "user_id.numeric"   => "User id must be numeric!",
+            "hmo_id.required"  => "Please provide a valid HMO id!",
+            "hmo_id.differs" => "User id and HMO id cannot be the same!",
+            "hmo_id.numeric" => "HMO id must be numeric!"
+        ]);
+
+        if ($this->validation->status() === false) {
+            $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        if (!$this->User->exists(['id' => $params['user_id']])) {
+
+            $this->response(['error' => 'User does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        if (!$this->User->exists(['id' => $params['hmo_id']])) {
+
+            $this->response(['error' => 'HMO does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        $user = $this->User->get(['id' => $params['user_id']]);
+        $hmo  = $this->User->get(['id' => $params['hmo_id']]);
+
+        if ($user->role != 'benefactor' || $hmo->role != 'hmo') {
+
+            $this->response(['error' => 'Error! Please verify user roles.'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        $user_obj = $this->User->update([
+            'id' => $user->id,
+        ],[
+            'hmo'=> $hmo->id
+        ]);
+
+        if (!$user_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        $this->response(['status' => 'success', 'user' => (array) $user_obj], self::HTTP_OK);
+
+    }
+
     public function list_get()
     {
         $user_objs = $this->User->fetch();
