@@ -104,7 +104,7 @@
         										<li>last_name</li>
         										<li>email</li>
         										<li>password</li>
-                                                <li>role (one of these: benefactor, hmo, sp, admnin)</li>
+                                                <li>role (one of these: benefactor, hmo, sp, admin)</li>
         									</ul>
                                         </div>
                                         <div class="col-md-6 col-12">
@@ -554,7 +554,17 @@
                                         <a class="nav-link scrollto" href="#get-sub">Get Subscription</a>
                                         <a class="nav-link scrollto" href="#list-subs">List</a>
                                     </nav><!--//nav-->
+                                <a class="nav-link scrollto" href="#record">Record</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#create-record">Create</a>
+                                        <a class="nav-link scrollto" href="#update-record">Update</a>
+                                        <a class="nav-link scrollto" href="#get-record">Get Record</a>
+                                        <a class="nav-link scrollto" href="#list-records">List</a>
+                                    </nav><!--//nav-->
                                 <a class="nav-link scrollto" href="#ui-components">Miscellenous</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#approve-request">Approve Request</a>
+                                    </nav><!--//nav-->
                             </nav><!--//doc-menu-->
                         </div><!--//doc-nav-->
                     </div><!--//doc-sidebar-->
