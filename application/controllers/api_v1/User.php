@@ -134,7 +134,7 @@ class User extends REST_Controller {
         $user_obj = $this->User->update([
             'id' => $user->id,
         ],[
-            'hmo'=> $hmo->id
+            'hmo_id'=> $hmo->id
         ]);
 
         if (!$user_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
