@@ -138,6 +138,14 @@ class Record extends REST_Controller {
 
             $this->response(['error' => 'Error! Unauthorized Access.'], self::HTTP_NOT_ACCEPTABLE);
         }
+        
+        if (isset($params['amount_due']) && isset($params['cost'])) {
+
+            if ($params['amount_due'] > $params['cost']) {
+            
+                $this->response(['error' => 'Amount payable to HMO cannot be greater than total cost!'], self::HTTP_NOT_ACCEPTABLE);
+            }
+        }
 
         $record_obj = $this->Record->update([
             'id'    => $params['record_id'],
