@@ -53,6 +53,11 @@ class Record extends REST_Controller {
             $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
         }
 
+        if ($params['amount_due'] > $params['cost']) {
+            
+            $this->response(['error' => 'Amount payable to HMO cannot be greater than total cost!'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
         if (!$this->User->exists(['id' => $params['user_id']])) {
 
             $this->response(['error' => 'User does not exist!'], self::HTTP_NOT_ACCEPTABLE);
@@ -135,9 +140,13 @@ class Record extends REST_Controller {
         }
 
         $record_obj = $this->Record->update([
-            'description'=> $params['description'],
-            'cost'       => $params['cost'],
-            'amount_due' => $params['amount_due']
+            'id'    => $params['record_id'],
+            'sp_id' => $params['sp_id']
+        ],[
+            'description' => $params['description'],
+            'cost'        => $params['cost'],
+            'amount_due'  => $params['amount_due'],
+            'date_updated'=> date('Y-m-d H:i:s')
         ]);
 
         if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
@@ -149,6 +158,17 @@ class Record extends REST_Controller {
     public function list_get()
     {
         $record_objs = $this->Record->fetch();
+
+        if (!$record_objs) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        $this->response(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
+    }
+
+    public function user_records_get($id)
+    {
+        if (!is_numeric($id)) $this->response(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
+
+        $record_objs = $this->Record->fetch(['user_id' => $id]);
 
         if (!$record_objs) $this->response(null, self::HTTP_INTERNAL_ERROR);
 
