@@ -157,4 +157,88 @@ class User extends REST_Controller {
         $this->response(['status' => 'success', 'users' => (array) $user_objs], self::HTTP_OK);
     }
 
+    public function approve_service_post()
+    {
+        $params = $this->post();
+
+        $this->validation->set_data($params);
+        $this->validation->make([
+            "user_id"   => "trim|required|numeric",
+            "record_id" => "trim|required|numeric"
+        ], [
+            "user_id.required"=> "Please provide a valid user id!",
+            "user_id.numeric" => "User id must be numeric!",
+            "record_id.required"=> "Please provide a valid record id!",
+            "record_id.numeric" => "Record id must be numeric!"
+        ]);
+
+        if ($this->validation->status() === false) {
+            $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        if (!$this->Record->exists(['id' => $params['record_id']])) {
+
+            $this->response(['error' => 'Record does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        $record = $this->Record->get(['id' => $params['record_id']]);
+
+        if ($record->user_id != $params['user_id'] || $record->status != 'pending approval') {
+
+            $this->response(['error' => 'Error! Unauthorized Access.'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        $record_obj = $this->Record->update([
+            'status' => 'pending fulfillment'
+        ]);
+
+        if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        $this->response(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
+
+    }
+
+    public function update_service_post()
+    {
+        $params = $this->post();
+
+        $this->validation->set_data($params);
+        $this->validation->make([
+            "user_id"   => "trim|required|numeric",
+            "record_id" => "trim|required|numeric",
+            "status"    => "trim|required|in_list[completed,cancelled]"
+        ], [
+            "user_id.required"=> "Please provide a valid user id!",
+            "user_id.numeric" => "User id must be numeric!",
+            "record_id.required"=> "Please provide a valid record id!",
+            "record_id.numeric" => "Record id must be numeric!",
+            "status.*"          => "Error! Status must be one of the following: completed or cancelled."
+        ]);
+
+        if ($this->validation->status() === false) {
+            $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        if (!$this->Record->exists(['id' => $params['record_id']])) {
+
+            $this->response(['error' => 'Record does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        $record = $this->Record->get(['id' => $params['record_id']]);
+
+        if ($record->user_id != $params['user_id'] || $record->status != 'pending approval' || $record->status != 'pending fulfillment') {
+
+            $this->response(['error' => 'Error! Invalid user id or service isn\'t pending approval or fulfillment.'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        $record_obj = $this->Record->update([
+            'status' => $params['status']
+        ]);
+
+        if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        $this->response(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
+
+    }
+
 }
