@@ -236,8 +236,112 @@
                                         </div>
                                     </div><!--//row-->
                                 </div><!--//section-block-->
+
+                                <div id="approve-service" class="section-block">
+                                    <h3 class="block-title">Approve Service</h3>
+                                    <p>Approve a service from a service provider.<br>Endpoint: /user/approve_service<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/approve_service
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "record_id": 1,
+    "user_id": 1
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "record": {
+        "id": "1",
+        "user_id": "1",
+        "sp_id": "3",
+        "hmo_id": "2",
+        "description": "Drug for cold",
+        "cost": "200.00",
+        "amount_due": "200.00",
+        "status": "pending fulfillment",
+        "date_initiated": "2021-10-07 19:32:42",
+        "date_updated": "2021-10-07 21:02:49"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>user_id</li>
+        										<li>record_id</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>none</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+
+                                <div id="update-service" class="section-block">
+                                    <h3 class="block-title">Update Service</h3>
+                                    <p>Update the status of a service from a service provider.<br>Endpoint: /user/update_service<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/update_service
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d {
+    "record_id": 1,
+    "user_id": 1,
+    "status": "completed"
+    }
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "record": {
+        "id": "1",
+        "user_id": "1",
+        "sp_id": "3",
+        "hmo_id": "2",
+        "description": "Drug for cold",
+        "cost": "200.00",
+        "amount_due": "200.00",
+        "status": "completed",
+        "date_initiated": "2021-10-07 19:32:42",
+        "date_updated": "2021-10-07 21:06:39"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>user_id</li>
+        										<li>record_id</li>
+                                                <li>status (must be either completed or cancelled)</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>none</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
                                 
-                                 <div id="others" class="section-block">
+                                <div id="others" class="section-block">
                                     <h3 class="block-title">List</h3>
                                     <p>List all user accounts in the system.<br>Endpoint: /user/list<br>Method: GET</p>
                                     <div class="row">
@@ -520,6 +624,292 @@
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
 
+                            <section id="record" class="doc-section">
+                                <h2 class="section-title">Record</h2>
+                                <div id="create-record" class="section-block">
+                                    <h3 class="block-title">Create</h3>
+                                    <p>Create a new service record.<br>Endpoint: /record/create<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/create
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "user_id": 1,
+    "hmo_id": 2,
+    "sp_id": 3,
+    "description": "Drug for Typhoid",
+    "cost": 400,
+    "amount_due": 300
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "record": {
+        "id": "4",
+        "user_id": "1",
+        "sp_id": "3",
+        "hmo_id": "2",
+        "description": "Drug for Typhoid",
+        "cost": "400.00",
+        "amount_due": "300.00",
+        "status": "pending approval",
+        "date_initiated": "2021-10-07 19:46:31",
+        "date_updated": "0000-00-00 00:00:00"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>user_id</li>
+        										<li>hmo_id</li>
+        										<li>sp_id</li>
+        										<li>description</li>
+                                                <li>cost</li>
+                                                <li>amount_due (amount payable to HMO, cannot be greater than cost)</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>none</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+                                <div id="update-record" class="section-block">
+                                    <h3 class="block-title">Update</h3>
+                                    <p>Update a record.<br>Endpoint: /record/update<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/update
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "record_id": 1,
+    "sp_id": 3,
+    "description": "Drug for cold",
+    "cost": 200,
+    "amount_due": 200
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "record": {
+        "id": "1",
+        "user_id": "1",
+        "sp_id": "3",
+        "hmo_id": "2",
+        "description": "Drug for cold",
+        "cost": "200.00",
+        "amount_due": "200.00",
+        "status": "pending approval",
+        "date_initiated": "2021-10-07 19:32:42",
+        "date_updated": "2021-10-07 20:54:44"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>record_id</li>
+        										<li>sp_id</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>description</li>
+                                                <li>cost</li>
+                                                <li>amount_due</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+                                <div id="get-record" class="section-block">
+                                    <h3 class="block-title">Get Record</h3>
+                                    <p>Get the details of a record.<br>Endpoint: /record/{record_id}<br>Method: GET</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/3
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "record": {
+        "id": "3",
+        "user_id": "1",
+        "sp_id": "3",
+        "hmo_id": "2",
+        "description": "Drug for Fever",
+        "cost": "200.00",
+        "amount_due": "200.00",
+        "status": "pending approval",
+        "date_initiated": "2021-10-07 19:45:10",
+        "date_updated": "0000-00-00 00:00:00"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+                                <div id="get-records" class="section-block">
+                                    <h3 class="block-title">Get User Records</h3>
+                                    <p>Get all records of a user.<br>Endpoint: /record/user_records/{user_id}<br>Method: GET</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/user_records/1
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "records": [
+        {
+            "id": "1",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for cold",
+            "cost": "200.00",
+            "amount_due": "200.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:32:42",
+            "date_updated": "2021-10-07 20:54:44"
+        },
+        {
+            "id": "2",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for Typhoid",
+            "cost": "500.00",
+            "amount_due": "300.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:36:07",
+            "date_updated": "0000-00-00 00:00:00"
+        },
+        {
+            "id": "3",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for Fever",
+            "cost": "200.00",
+            "amount_due": "200.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:45:10",
+            "date_updated": "0000-00-00 00:00:00"
+        },
+        {
+            "id": "4",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for Fever and cold",
+            "cost": "200.00",
+            "amount_due": "200.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:46:31",
+            "date_updated": "0000-00-00 00:00:00"
+        }
+    ]
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+                                <div id="list-records" class="section-block">
+                                    <h3 class="block-title">List Records</h3>
+                                    <p>List all records in the system.<br>Endpoint: /record/list<br>Method: GET</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/list
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-X GET</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "records": [
+        {
+            "id": "1",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for cold",
+            "cost": "200.00",
+            "amount_due": "200.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:32:42",
+            "date_updated": "2021-10-07 20:54:44"
+        },
+        {
+            "id": "2",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for Typhoid",
+            "cost": "500.00",
+            "amount_due": "300.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:36:07",
+            "date_updated": "0000-00-00 00:00:00"
+        },
+        {
+            "id": "3",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for Fever",
+            "cost": "200.00",
+            "amount_due": "200.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:45:10",
+            "date_updated": "0000-00-00 00:00:00"
+        },
+        {
+            "id": "4",
+            "user_id": "1",
+            "sp_id": "3",
+            "hmo_id": "2",
+            "description": "Drug for Fever and cold",
+            "cost": "200.00",
+            "amount_due": "200.00",
+            "status": "pending approval",
+            "date_initiated": "2021-10-07 19:46:31",
+            "date_updated": "0000-00-00 00:00:00"
+        }
+    ]
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+
                             <section id="ui-components" class="doc-section">
                                 <h2 class="section-title">Miscellenous</h2>
                                 <div class="section-block">
@@ -540,6 +930,8 @@
                                         <a class="nav-link scrollto" href="#assign-hmo">Assign HMO</a>
                                         <a class="nav-link scrollto" href="#discussions">User account</a>
                                         <a class="nav-link scrollto" href="#members">Authenticate</a>
+                                        <a class="nav-link scrollto" href="#approve-service">Approve service</a>
+                                        <a class="nav-link scrollto" href="#update-service">Update service</a>
                                         <a class="nav-link scrollto" href="#others">List</a>
                                     </nav><!--//nav-->
                                 <a class="nav-link scrollto" href="#plan">Plan</a>
@@ -559,12 +951,10 @@
                                         <a class="nav-link scrollto" href="#create-record">Create</a>
                                         <a class="nav-link scrollto" href="#update-record">Update</a>
                                         <a class="nav-link scrollto" href="#get-record">Get Record</a>
+                                        <a class="nav-link scrollto" href="#get-records">Get User Records</a>
                                         <a class="nav-link scrollto" href="#list-records">List</a>
                                     </nav><!--//nav-->
                                 <a class="nav-link scrollto" href="#ui-components">Miscellenous</a>
-                                    <nav class="doc-sub-menu nav flex-column">
-                                        <a class="nav-link scrollto" href="#approve-request">Approve Request</a>
-                                    </nav><!--//nav-->
                             </nav><!--//doc-menu-->
                         </div><!--//doc-nav-->
                     </div><!--//doc-sidebar-->
