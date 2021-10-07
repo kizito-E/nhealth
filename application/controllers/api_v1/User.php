@@ -139,6 +139,7 @@ class User extends REST_Controller {
 
         if (!$user_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
 
+        unset($user_obj->password);
         $this->response(['status' => 'success', 'user' => (array) $user_obj], self::HTTP_OK);
 
     }
