@@ -115,6 +115,57 @@
                                         </div>
                                     </div><!--//row-->
                                 </div><!--//section-block-->
+                                <div id="assign-hmo" class="section-block">
+                                    <h3 class="block-title">Assign HMO</h3>
+                                    <p>Assign a HMO to a benefactor.<br>Endpoint: /user/assign_hmo<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/assign_hmo
+-H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "user_id": 1,
+    "hmo_id": 2
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "user": {
+        "id": "1",
+        "first_name": "Elvis",
+        "last_name": "Obioha",
+        "business_name": "",
+        "email": "elvis@elviskizito.com",
+        "role": "benefactor",
+        "hmo_id": "2",
+        "plan_id": "2",
+        "subscription_id": "4",
+        "status": "1",
+        "created": "2021-09-26 21:08:51"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>user_id</li>
+        										<li>hmo_id</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+        										<li>none</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
                                 <div id="discussions" class="section-block">
                                     <h3 class="block-title">User account</h3>
                                     <p>Get the basic details of a user account.<br>Endpoint: /user/{user_id}<br>Method: GET</p>
@@ -486,6 +537,7 @@
                                 <a class="nav-link scrollto" href="#app-components">User</a>
                                     <nav class="doc-sub-menu nav flex-column">
                                         <a class="nav-link scrollto" href="#projects">Create</a>
+                                        <a class="nav-link scrollto" href="#assign-hmo">Assign HMO</a>
                                         <a class="nav-link scrollto" href="#discussions">User account</a>
                                         <a class="nav-link scrollto" href="#members">Authenticate</a>
                                         <a class="nav-link scrollto" href="#others">List</a>
