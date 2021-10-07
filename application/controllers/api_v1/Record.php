@@ -111,9 +111,9 @@ class Record extends REST_Controller {
         $this->validation->make([
             "sp_id"      => "trim|required|numeric",
             "record_id"  => "trim|required|numeric",
-            "description"=> "trim|required|alpha_numeric_spaces|min_length[3]|max_length[255]",
-            "cost"       => "trim|required|numeric",
-            "amount_due" => "trim|required|numeric",
+            "description"=> "trim|alpha_numeric_spaces|min_length[3]|max_length[255]",
+            "cost"       => "trim|numeric",
+            "amount_due" => "trim|numeric",
         ], [
             "record_id.required"=> "Please provide a valid record id!",
             "record_id.numeric" => "Record id must be numeric!",
@@ -143,9 +143,9 @@ class Record extends REST_Controller {
             'id'    => $params['record_id'],
             'sp_id' => $params['sp_id']
         ],[
-            'description' => $params['description'],
-            'cost'        => $params['cost'],
-            'amount_due'  => $params['amount_due'],
+            'description' => isset($params['description']) ? $params['description'] : $record->description,
+            'cost'        => isset($params['cost']) ? $params['cost'] : $record->cost,
+            'amount_due'  => isset($params['amount_due']) ? $params['amount_due'] : $record->amount_due,
             'date_updated'=> date('Y-m-d H:i:s')
         ]);
 
