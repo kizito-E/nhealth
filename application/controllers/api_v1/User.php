@@ -40,11 +40,17 @@ class User extends REST_Controller {
             $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
         }
 
+        $user_obj = $this->User->get(['email' => $params['email']]);
+
+        if (!$user_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        unset($user_obj->password);
+
         $user_auth = $this->Auth->login($params['email'], $params['password']);
 
         if ($user_auth !== true) $this->response(['error' => $user_auth], self::HTTP_UNAUTHORIZED);
 
-        $this->response(['status' => 'success'], self::HTTP_OK);
+        $this->response(['status' => 'success', 'user' => (array) $user_obj], self::HTTP_OK);
 
     }
 
