@@ -190,6 +190,7 @@
         "role": "admin",
         "hmo_id": "0",
         "plan_id": "0",
+        "subscription_id": "4",
         "status": "1",
         "created": "2021-10-05 13:06:18"
     }
@@ -366,6 +367,7 @@
             "role": "benefactor",
             "hmo_id": "0",
             "plan_id": "0",
+            "subscription_id": "4",
             "status": "1",
             "created": "2021-09-26 20:15:32"
         },
@@ -378,6 +380,7 @@
             "role": "admin",
             "hmo_id": "0",
             "plan_id": "0",
+            "subscription_id": "0",
             "status": "1",
             "created": "2021-10-05 13:06:18"
         }
