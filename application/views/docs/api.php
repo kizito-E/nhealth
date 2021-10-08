@@ -60,7 +60,7 @@
 
                                     <p>Sample authorization request</p>
                                     <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/ping
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X POST</code></pre>
                         
@@ -77,7 +77,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/create
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "first_name": "David",
@@ -122,7 +122,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/assign_hmo
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "user_id": 1,
@@ -173,7 +173,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/2
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -206,7 +206,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/auth
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "email": "davided@gmail.com",
@@ -218,6 +218,19 @@
                                         <p>Sample response</p>
                                             <pre class="language-json"><code>{
     "status": "success"
+    "user": {
+        "id": "2",
+        "first_name": "David",
+        "last_name": "Edijala",
+        "business_name": "",
+        "email": "davided@gmail.com",
+        "role": "admin",
+        "hmo_id": "0",
+        "plan_id": "0",
+        "subscription_id": "4",
+        "status": "1",
+        "created": "2021-10-05 13:06:18"
+    }
 }</code></pre>
                                         </div>
                                     </div><!--//row-->
@@ -245,7 +258,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/approve_service
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "record_id": 1,
@@ -296,7 +309,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/update_service
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d {
     "record_id": 1,
@@ -349,7 +362,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/list
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -400,7 +413,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/plan/2
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -425,7 +438,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/plan/list
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -466,7 +479,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/create
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "user_id": 1,
@@ -507,7 +520,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/update
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "subscription_id": 4,
@@ -554,7 +567,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/2
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -598,7 +611,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/subscription/list
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -636,7 +649,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/create
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "user_id": 1,
@@ -694,7 +707,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/update
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -d "{
     "record_id": 1,
@@ -749,7 +762,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/3
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -780,7 +793,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/user_records/1
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
@@ -849,7 +862,7 @@
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
                                             <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/record/list
--H "Authorization: Bearer BASE64_ENCODE(user:pass)"
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
 -H "Content-Type: application/json"
 -X GET</code></pre>
                                         </div>
