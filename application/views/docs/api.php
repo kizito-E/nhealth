@@ -100,8 +100,6 @@
                                         <div class="col-md-6 col-12">
                                             <h6>Required parameters</h6>
                                             <ul class="list">
-        										<li>first_name</li>
-        										<li>last_name</li>
         										<li>email</li>
         										<li>password</li>
                                                 <li>role (one of these: benefactor, hmo, sp, admin)</li>
@@ -110,7 +108,63 @@
                                         <div class="col-md-6 col-12">
                                             <h6>Optional parameters</h6>
                                             <ul class="list">
+                                                <li>first_name</li>
+        										<li>last_name</li>
         										<li>business_name</li>
+        									</ul>
+                                        </div>
+                                    </div><!--//row-->
+                                </div><!--//section-block-->
+                                <div id="update-user" class="section-block">
+                                    <h3 class="block-title">Update</h3>
+                                    <p>Update a user account.<br>Endpoint: /user/update<br>Method: POST</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 code-block">
+                                            <p>Sample request</p>
+                                            <pre class="language-html"><code>curl https://api.nhealth.site/api_v1/user/update
+-H "Authorization: Basic BASE64_ENCODE(user:pass)"
+-H "Content-Type: application/json"
+-d "{
+    "user_id": 2,
+    "business_name": "AUN",
+    "status": "1"
+    }"
+-X POST</code></pre>
+                                        </div>
+                                        <div class="col-md-6 col-12 code-block">
+                                        <p>Sample response</p>
+                                            <pre class="language-json"><code>{
+    "status": "success",
+    "user": {
+        "id": "2",
+        "first_name": "David",
+        "last_name": "Edijala",
+        "business_name": "AUN",
+        "email": "davided@gmail.com",
+        "role": "hmo",
+        "hmo_id": "0",
+        "plan_id": "0",
+        "subscription_id": "0",
+        "status": "1",
+        "created": "2021-10-07 09:16:23"
+    }
+}</code></pre>
+                                        </div>
+                                    </div><!--//row-->
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <h6>Required parameters</h6>
+                                            <ul class="list">
+        										<li>user_id</li>
+        									</ul>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <h6>Optional parameters</h6>
+                                            <ul class="list">
+                                                <li>first_name</li>
+        										<li>last_name</li>
+        										<li>business_name</li>
+                                                <li>status (must be 0 or 1)</li>
         									</ul>
                                         </div>
                                     </div><!--//row-->
@@ -943,6 +997,7 @@
                                 <a class="nav-link scrollto" href="#app-components">User</a>
                                     <nav class="doc-sub-menu nav flex-column">
                                         <a class="nav-link scrollto" href="#projects">Create</a>
+                                        <a class="nav-link scrollto" href="#update-user">Update</a>
                                         <a class="nav-link scrollto" href="#assign-hmo">Assign HMO</a>
                                         <a class="nav-link scrollto" href="#discussions">User account</a>
                                         <a class="nav-link scrollto" href="#members">Authenticate</a>
