@@ -61,8 +61,8 @@ class User extends REST_Controller {
 
         $this->validation->set_data($params);
         $this->validation->make([
-            "first_name"    => "trim|required|alpha|min_length[2]",
-            "last_name"     => "trim|required|alpha|min_length[2]",
+            "first_name"    => "trim|alpha|min_length[2]",
+            "last_name"     => "trim|alpha|min_length[2]",
             "business_name" => "trim|alpha|min_length[2]",
             "email"         => "trim|required|valid_email|is_unique[users.email]",
             "password"      => "trim|required|min_length[8]|max_length[20]",
@@ -70,13 +70,14 @@ class User extends REST_Controller {
         ], [
             "first_name.*"           => "Please provide a valid first name!",
             "last_name.*"            => "Please provide a valid last name!",
+            "business_name.*"        => "Please provide a valid business name!",
             "email.required"         => "Please provide a valid email!",
             "email.valid_email"      => "Please provide a valid email!",
             "email.is_unique"        => "This email address already exists!",
             "password.required"      => "Please provide a valid password!",
             "password.min_length"    => "Password must be at least {param} сharacters!",
             "password.max_length"    => "Password cannot be more than {param} сharacters!",
-            "sub_role.*"             => "Please provide a valid account role!",
+            "role.*"                 => "Please provide a valid account role!",
         ]);
 
         if ($this->validation->status() === false) {
@@ -84,8 +85,8 @@ class User extends REST_Controller {
         }
 
         $user_obj = $this->User->add([
-            'first_name'    => $params['first_name'],
-            'last_name'     => $params['last_name'],
+            'first_name'    => isset($params['first_name']) ? $params['first_name'] : '',
+            'last_name'     => isset($params['last_name']) ? $params['last_name'] : '',
             'business_name' => isset($params['business_name']) ? $params['business_name'] : '',
             'email'         => $params['email'],
             'password'      => superhash($params['password']),
@@ -96,6 +97,55 @@ class User extends REST_Controller {
         if (!$user_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
 
         $this->response(['status' => 'success', 'user_id' => $user_obj->id], self::HTTP_CREATED);
+
+    }
+
+    public function update_post()
+    {
+
+        $params = $this->post();
+
+        $this->validation->set_data($params);
+        $this->validation->make([
+            "user_id"       => "trim|required|numeric",
+            "first_name"    => "trim|alpha|min_length[2]",
+            "last_name"     => "trim|alpha|min_length[2]",
+            "business_name" => "trim|alpha|min_length[2]",
+            "status"        => "numeric|in_list[0,1]",
+        ], [
+            "user_id.required"       => "Please provide a valid user id!",
+            "user_id.numeric"        => "User id must be numeric!",
+            "first_name.*"           => "Please provide a valid first name!",
+            "last_name.*"            => "Please provide a valid last name!",
+            "business_name.*"        => "Please provide a valid business name!",
+            "status.*"               => "Please provide a valid account status!",
+        ]);
+
+        if ($this->validation->status() === false) {
+            $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        if (!$this->User->exists(['id' => $params['user_id']])) {
+
+            $this->response(['error' => 'User does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+        }
+
+        $user = $this->User->get(['id' => $params['user_id']]);
+
+        $user_obj = $this->User->update([
+            'id' => $params['user_id']
+        ],[
+            'first_name'    => isset($params['first_name']) ? $params['first_name'] : $user->first_name,
+            'last_name'     => isset($params['last_name']) ? $params['last_name'] : $user->last_name,
+            'business_name' => isset($params['business_name']) ? $params['business_name'] : $user->business_name,
+            'status'        => isset($params['status']) ? $params['status'] : $user->status,
+        ]);
+
+        if (!$user_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+
+        unset($user_obj->password);
+
+        $this->response(['status' => 'success', 'user' => (array) $user_obj], self::HTTP_OK);
 
     }
 
