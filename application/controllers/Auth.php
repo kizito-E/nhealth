@@ -20,7 +20,7 @@ class Auth extends MY_Controller
     public function login()
     {
         if ($this->Auth2->is_logged()) {
-            redirect("/");
+            redirect("main/dashboard");
         }
 
         $this->load->view('auth/login');
@@ -29,8 +29,8 @@ class Auth extends MY_Controller
 
     public function register()
     {
-        if ($this->Auth2->is_logged() || !get_globalsettings('users_registration', 1)) {
-            redirect("/");
+        if ($this->Auth2->is_logged()) {
+            redirect("main/dashboard");
         }
 
         $this->load->view('auth/register');
@@ -68,7 +68,7 @@ class Auth extends MY_Controller
     public function api_login()
     {
         if (!check_csrf_token()) {
-            exit_json(1, __("Некорректный CSRF токен!"));
+            exit_json(1, "Invalid CSRF Token");
         }
 
         $email = $this->input->post("email");
@@ -86,16 +86,13 @@ class Auth extends MY_Controller
 
     public function api_register()
     {
-        if (!get_globalsettings('users_registration', 1)) {
-            exit_json(1, __("Ошибка - регистрация запрещена!"));
-        }
 
         if ($this->Auth2->is_logged()) {
-            exit_json(1, __("Ошибка - вы уже авторизованы!"));
+            exit_json(1, "An error occurred");
         }
 
         if (!check_csrf_token()) {
-            exit_json(1, __("Некорректный CSRF токен!"));
+            exit_json(1, "Invalid CSRF Token");
         }
 
         $this->validation->make([
@@ -129,12 +126,12 @@ class Auth extends MY_Controller
         ]);
 
         if (!$user_obj) {
-            exit_json(1, __("Возникла ошибка!"));
+            exit_json(1, "An error occurred");
         }
 
         $user_obj->plain_password = $this->input->post("password");
 
-        event("user.register", $user_obj);
+        //event("user.register", $user_obj);
 
         exit_json();
     }
@@ -143,11 +140,11 @@ class Auth extends MY_Controller
     public function api_forgot_password()
     {
         if ($this->Auth2->is_logged()) {
-            exit_json(1, __("Ошибка - вы уже авторизованы!"));
+            exit_json(1, "An error occurred");
         }
 
         if (!check_csrf_token()) {
-            exit_json(1, __("Некорректный CSRF токен!"));
+            exit_json(1, "Invalid CSRF Token");
         }
 
         $this->validation->make([
@@ -170,11 +167,6 @@ class Auth extends MY_Controller
             exit_json(1, __("Ошибка!"));
         }
 
-        event("user.forgot_password", (object) [
-            'email'       => $this->input->post('email'),
-            'reset_token' => $reset_token,
-        ]);
-
         exit_json();
     }
 
@@ -182,11 +174,11 @@ class Auth extends MY_Controller
     public function api_reset_password()
     {
         if ($this->Auth2->is_logged()) {
-            exit_json(1, __("Ошибка - вы уже авторизованы!"));
+            exit_json(1, "An error occurred");
         }
 
         if (!check_csrf_token()) {
-            exit_json(1, __("Некорректный CSRF токен!"));
+            exit_json(1, "Invalid CSRF Token");
         }
 
         $this->validation->make([
@@ -216,7 +208,7 @@ class Auth extends MY_Controller
             'reset_pass_token' => null,
         ]);
 
-        event("user.reset_password", $userdata);
+        //event("user.reset_password", $userdata);
 
         exit_json();
     }

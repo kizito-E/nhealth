@@ -8,7 +8,7 @@ class Auth2_model extends MY_Model {
     {
         parent::__construct();
 
-        $this->table       = config_item('users_table');
+        $this->table = 'users';
         $this->primary_key = 'id';
         $this->load->library('session');
     }
@@ -28,16 +28,14 @@ class Auth2_model extends MY_Model {
         ]);
 
         if (!$userdata) {
-            throw new Exception(__("Неверный Логин / Пароль"));
+            throw new Exception(__("Incorrect Credentials!"));
         }
 
         if ($userdata->status != 1) {
-            throw new Exception(__("Аккаунт заблокирован!"));
+            throw new Exception(__("Аccount Inactive!"));
         }
 
         $this->session->set_userdata((array) $userdata);
-
-        event('auth.login', ['user_id' => $userdata]);
 
         return true;
     }

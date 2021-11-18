@@ -432,7 +432,7 @@ if (!function_exists('admindata')) {
         static $ret = null;
 
         if (!$ret) {
-            $ret = $CI->db->get_where('users', ['role' => 'administrator'])->row(1);
+            $ret = $CI->db->get_where('users', ['role' => 'admin'])->row(1);
         }
 
         return $ret;
@@ -447,7 +447,40 @@ if (!function_exists('is_administrator')) {
 
     function is_administrator()
     {
-        return isset(userdata()->role) && userdata()->role == 'administrator';
+        return isset(userdata()->role) && userdata()->role == 'admin';
+    }
+
+
+}
+
+if (!function_exists('is_beneficiary')) {
+
+
+    function is_beneficiary()
+    {
+        return isset(userdata()->role) && userdata()->role == 'beneficiary';
+    }
+
+
+}
+
+if (!function_exists('is_hmo')) {
+
+
+    function is_hmo()
+    {
+        return isset(userdata()->role) && userdata()->role == 'hmo';
+    }
+
+
+}
+
+if (!function_exists('is_sp')) {
+
+
+    function is_sp()
+    {
+        return isset(userdata()->role) && userdata()->role == 'sp';
     }
 
 
