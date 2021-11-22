@@ -17,7 +17,7 @@ class Subscription extends REST_Controller {
 
         $subscription_obj = $this->Subscription->get(['id' => $id]);
 
-        if (!$subscription_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+        if (!$subscription_obj) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
         $plan_obj = $this->Plan->get(['id' => $subscription_obj->plan_id]);
         $user_obj = $this->User->get(['id' => $subscription_obj->user_id]);
@@ -161,7 +161,7 @@ class Subscription extends REST_Controller {
     {
         $subscription_objs = $this->Subscription->fetch();
 
-        if (!$subscription_objs) $this->response(null, self::HTTP_INTERNAL_ERROR);
+        if (!$subscription_objs) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
         $this->response(['status' => 'success', 'subscriptions' => (array) $subscription_objs], self::HTTP_OK);
     }

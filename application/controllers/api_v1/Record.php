@@ -17,7 +17,7 @@ class Record extends REST_Controller {
 
         $record_obj = $this->Record->get(['id' => $id]);
 
-        if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+        if (!$record_obj) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
         $this->response(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_OK);
     }
@@ -167,7 +167,7 @@ class Record extends REST_Controller {
     {
         $record_objs = $this->Record->fetch();
 
-        if (!$record_objs) $this->response(null, self::HTTP_INTERNAL_ERROR);
+        if (!$record_objs) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
         $this->response(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
     }
@@ -178,7 +178,7 @@ class Record extends REST_Controller {
 
         $record_objs = $this->Record->fetch(['user_id' => $id]);
 
-        if (!$record_objs) $this->response(null, self::HTTP_INTERNAL_ERROR);
+        if (!$record_objs) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
         $this->response(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
     }
