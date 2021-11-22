@@ -12,7 +12,9 @@ class Beneficiary extends MY_Controller
         is_beneficiary() OR redirect('/');
 
         $this->viewdata = [
-            'email' => userdata()->email
+            'email' => userdata()->email,
+            'first_name' => userdata()->first_name,
+            'last_name' => userdata()->last_name
         ];
     }
 
