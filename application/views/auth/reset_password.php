@@ -16,8 +16,8 @@
         <div id="app-reset-password" class="register-box">
 
             <div class="register-logo">
-                <a href="/auth/login/">
-                  <img class="auth-logo" src="<?php echo get_globalsettings('custom_logo', '/assets/imgs/adflex-logo.png')?>">
+                <a href="/">
+                  <b>nHealth</b>
                 </a>
             </div>
 

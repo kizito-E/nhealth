@@ -22,7 +22,7 @@
                 <section class="content-header">
                     <h1>Settings</h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Beneficiary</a></li>
+                        <li class="active"><a href="/"><i class="fa fa-dashboard"></i> SP</a></li>
                         <li>Settings</li>
                     </ol>
                 </section>

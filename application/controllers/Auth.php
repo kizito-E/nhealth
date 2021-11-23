@@ -26,17 +26,6 @@ class Auth extends MY_Controller
         $this->load->view('auth/login');
     }
 
-
-    public function register()
-    {
-        if ($this->Auth2->is_logged()) {
-            redirect("main/dashboard");
-        }
-
-        $this->load->view('auth/register');
-    }
-
-
     public function logout()
     {
         $this->Auth2->logout();

@@ -17,8 +17,8 @@
         <div v-cloak id="app-login" class="login-box">
 
             <div class="login-logo">
-                <a href="/auth/login/">
-                  <!--<img class="auth-logo" src="">-->
+                <a href="/">
+                  <b>nHealth</b>
                 </a>
             </div>
 
@@ -55,10 +55,6 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-
-                        <div class="pull-left">
-                            <a href="/auth/register/" class="text-center">Create an account</a>
-                        </div>
 
                         <div class="pull-right">
                             <a href="/auth/forgot/">Reset Password</a>

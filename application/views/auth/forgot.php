@@ -16,8 +16,8 @@
         <div id="app-forgot-password" class="register-box">
 
             <div class="register-logo">
-                <a href="/auth/forgot/">
-                  <!--<img class="auth-logo" src="">-->
+                <a href="/">
+                  <b>nHealth</b>
                 </a>
             </div>
 

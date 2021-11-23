@@ -7,7 +7,7 @@
                 <img src="/assets/imgs/avatar_user.png" class="img-circle">
             </div>
             <div class="pull-left info">
-                <p><?php echo $first_name . ' ' . $last_name; ?></p>
+                <p><?php echo $name; ?></p>
             </div>
         </div>
         <ul class="sidebar-menu" data-widget="tree">

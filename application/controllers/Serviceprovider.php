@@ -12,7 +12,8 @@ class Serviceprovider extends MY_Controller
         is_sp() OR redirect('/');
 
         $this->viewdata = [
-            'email' => userdata()->email
+            'email' => userdata()->email,
+            'name'  => userdata()->business_name
         ];
     }
 

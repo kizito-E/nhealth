@@ -12,7 +12,8 @@ class Admin extends MY_Controller
         is_administrator() OR redirect('/');
 
         $this->viewdata = [
-            'email' => userdata()->email
+            'email' => userdata()->email,
+            'name'  => userdata()->business_name
         ];
     }
 
@@ -26,6 +27,11 @@ class Admin extends MY_Controller
     public function dashboard()
     {
         $this->load->view('admin/dashboard/dashboard', $this->viewdata + []);
+    }
+
+    public function beneficiaries()
+    {
+        $this->load->view('admin/beneficiaries/beneficiaries', $this->viewdata + []);
     }
 
     public function settings()

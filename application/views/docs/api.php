@@ -102,7 +102,7 @@
                                             <ul class="list">
         										<li>email</li>
         										<li>password</li>
-                                                <li>role (one of these: benefactor, hmo, sp, admin)</li>
+                                                <li>role (one of these: beneficiary, hmo, sp, admin)</li>
         									</ul>
                                         </div>
                                         <div class="col-md-6 col-12">
@@ -171,7 +171,7 @@
                                 </div><!--//section-block-->
                                 <div id="assign-hmo" class="section-block">
                                     <h3 class="block-title">Assign HMO</h3>
-                                    <p>Assign a HMO to a benefactor.<br>Endpoint: /user/assign_hmo<br>Method: POST</p>
+                                    <p>Assign a HMO to a beneficiary.<br>Endpoint: /user/assign_hmo<br>Method: POST</p>
                                     <div class="row">
                                         <div class="col-md-6 col-12 code-block">
                                             <p>Sample request</p>
@@ -194,7 +194,7 @@
         "last_name": "Obioha",
         "business_name": "",
         "email": "elvis@elviskizito.com",
-        "role": "benefactor",
+        "role": "beneficiary",
         "hmo_id": "2",
         "plan_id": "2",
         "subscription_id": "4",
@@ -431,7 +431,7 @@
             "last_name": "Obioha",
             "business_name": "",
             "email": "elvis@elviskizito.com",
-            "role": "benefactor",
+            "role": "beneficiary",
             "hmo_id": "0",
             "plan_id": "0",
             "subscription_id": "4",
@@ -646,7 +646,7 @@
         "last_name": "Obioha",
         "business_name": "",
         "email": "elvis@elviskizito.com",
-        "role": "benefactor",
+        "role": "beneficiary",
         "hmo_id": "0",
         "plan_id": "0",
         "subscription_id": "0",

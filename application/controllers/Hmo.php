@@ -12,7 +12,8 @@ class Hmo extends MY_Controller
         is_hmo() OR redirect('/');
 
         $this->viewdata = [
-            'email' => userdata()->email
+            'email' => userdata()->email,
+            'name'  => userdata()->business_name
         ];
     }
 
@@ -26,6 +27,11 @@ class Hmo extends MY_Controller
     public function dashboard()
     {
         $this->load->view('hmo/dashboard/dashboard', $this->viewdata + []);
+    }
+
+    public function beneficiaries()
+    {
+        $this->load->view('hmo/beneficiaries/beneficiaries', $this->viewdata + []);
     }
 
     public function settings()

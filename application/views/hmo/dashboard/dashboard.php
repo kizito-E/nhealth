@@ -20,7 +20,7 @@
             <div class="content-wrapper">
 
                 <section class="content-header">
-                    <h1>HMO dashboard</h1>
+                    <h1>HMO Dashboard</h1>
                     <ol class="breadcrumb">
                         <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                     </ol>
@@ -33,36 +33,36 @@
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3></h3>
-                                    <p></p>
+                                    <h3>738</h3>
+                                    <p>Managed beneficiaries</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-crosshairs"></i>
+                                    <i class="fa fa-users"></i>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-xs-4">
-                            <div class="small-box bg-blue">
+                            <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3></h3>
-                                    <p></p>
+                                    <h3>73</h3>
+                                    <p>This week's services</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-percent"></i>
+                                    <i class="fa fa-stethoscope"></i>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-xs-4">
-                            <div class="small-box bg-blue">
+                            <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3><span></span>
-                                      <sup style="font-size: 20px">NGN</sup></h3>
-                                    <p></p>
+                                    <h3><span>73,383</span>
+                                    <sup style="font-size: 20px">NGN</sup></h3>
+                                    <p>Amount covered</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-arrow-up"></i>
+                                    <i class="fa fa-arrow-down"></i>
                                 </div>
                             </div>
                         </div>
