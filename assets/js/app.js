@@ -1949,7 +1949,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 					unit_bgcolor: "#00AABB",
 					unit_bordercolor: "#cccccc",
 					font_family: "inherit",
-					title_color: "#3C8DBC",
+					title_color: "#1977cc",
 					description_color: "#4C4C4C",
 					button_color: ""
 				},
