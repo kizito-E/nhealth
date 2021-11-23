@@ -66,7 +66,7 @@ class User extends REST_Controller {
             "business_name" => "trim|alpha|min_length[2]",
             "email"         => "trim|required|valid_email|is_unique[users.email]",
             "password"      => "trim|required|min_length[8]|max_length[20]",
-            "role"          => "required|in_list[benefactor,hmo,sp,admin]",
+            "role"          => "required|in_list[beneficiary,hmo,sp,admin]",
         ], [
             "first_name.*"           => "Please provide a valid first name!",
             "last_name.*"            => "Please provide a valid last name!",
@@ -182,7 +182,7 @@ class User extends REST_Controller {
         $user = $this->User->get(['id' => $params['user_id']]);
         $hmo  = $this->User->get(['id' => $params['hmo_id']]);
 
-        if ($user->role != 'benefactor' || $hmo->role != 'hmo') {
+        if ($user->role != 'beneficiary' || $hmo->role != 'hmo') {
 
             $this->response(['error' => 'Error! Please verify user roles.'], self::HTTP_NOT_ACCEPTABLE);
         }

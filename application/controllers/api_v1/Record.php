@@ -77,7 +77,7 @@ class Record extends REST_Controller {
         $hmo  = $this->User->get(['id' => $params['hmo_id']]);
         $sp   = $this->User->get(['id' => $params['sp_id']]);
 
-        if ($user->role != 'benefactor' || $hmo->role != 'hmo' || $sp->role != 'sp') {
+        if ($user->role != 'beneficiary' || $hmo->role != 'hmo' || $sp->role != 'sp') {
 
             $this->response(['error' => 'Error! Please verify user roles.'], self::HTTP_NOT_ACCEPTABLE);
         }
