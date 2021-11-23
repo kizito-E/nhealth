@@ -28,4 +28,9 @@ class Serviceprovider extends MY_Controller
         $this->load->view('service_provider/dashboard/dashboard', $this->viewdata + []);
     }
 
+    public function settings()
+    {
+        $this->load->view('service_provider/settings/settings', $this->viewdata + []);
+    }
+
 }

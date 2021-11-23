@@ -10,20 +10,18 @@
                 <p><?php echo $first_name . ' ' . $last_name; ?></p>
             </div>
         </div>
-        <ul class="sidebar-menu " data-widget="tree">
-            <li class="header">Main Navigation</li>
-            <li <?php menu_item('webmaster\/dashboard'); ?> >
-                <a href="/webmaster/dashboard">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li <?php menu_item('beneficiary\/dashboard'); ?> >
+                <a href="/beneficiary/dashboard">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
 
-            <li <?php menu_item('webmaster\/settings'); ?> >
-                <a href="/webmaster/settings">
+            <li <?php menu_item('beneficiary\/settings'); ?> >
+                <a href="/beneficiary/settings">
                     <i class="fa fa-cog"></i> <span>Settings</span>
                 </a>
             </li>
-
         </ul>
     </section>
 </aside>

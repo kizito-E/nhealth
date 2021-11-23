@@ -8,12 +8,12 @@
                 <button @click="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title"><?php _e('123'); ?></h4>
+                <h4 class="modal-title">Modal Title</h4>
             </div>
 
             <div class="modal-body">
                 <div class="form-group">
-                    <label><?php _e('Сайт'); ?><span class="text-red"> *</span></label>
+                    <label>Label<span class="text-red"> *</span></label>
                     <input type="text" class="form-control" placeholder="">
                 </div>
 
@@ -22,13 +22,13 @@
             <div class="modal-footer">
 
                 <button @click="closeModal" class="btn btn-default pull-left">
-                    <?php _e('Закрыть'); ?>
+                    Close
                 </button>
 
                 <button @click="addSite" class="btn btn-danger">
                     <i v-if="button_active" class="fa fa-circle-o-notch fa-spin fa-fw"></i>
                     <i v-else class="fa fa-check fa-fw"></i>
-                    <?php _e('Сохранить'); ?>
+                    Button
                 </button>
 
             </div>

@@ -4,15 +4,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><?php echo get_globalsettings('custom_name', 'AdFlex')?> > <?php _e('Консоль'); ?> > <?php _e('Кабинет рекламодателя'); ?></title>
+        <title>SP Dashboard -nHealth</title>
         <meta name="csrf" content="<?php csrf_token(); ?>">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <?php include_once dirname(dirname(__DIR__)) . "/_styles.php"; ?>
-        <?php print_js_var('views_clicks_chart', $views_clicks_chart); ?>
-        <?php print_js_var('ctr_chart', $ctr_chart); ?>
-        <?php print_js_var('costs_chart', $costs_chart); ?>
     </head>
-    <body class="hold-transition skin-green fixed sidebar-mini">
+
+    <body class="hold-transition skin-blue fixed sidebar-mini">
 
         <div class="wrapper">
 
@@ -22,128 +20,84 @@
             <div class="content-wrapper">
 
                 <section class="content-header">
-                    <h1><?php _e('Консоль рекламодателя'); ?></h1>
+                    <h1>SP dashboard</h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="/"><i class="fa fa-dashboard"></i> <?php _e('Консоль'); ?></a></li>
+                        <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                     </ol>
                 </section>
 
                 <section class="content">
 
                     <div class="row">
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
+
+                        <div class="col-lg-3 col-xs-4">
+                            <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3 id="today-views"><?= number_format($today_views) ?></h3>
-                                    <p><?php _e('Показов сегодня:') ?></p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-eye"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3 id="today-clicks"><?= number_format($today_clicks) ?></h3>
-                                    <p><?php _e('Кликов сегодня:') ?></p>
+                                    <h3></h3>
+                                    <p></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-crosshairs"></i>
                                 </div>
                             </div>
                         </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
+
+                        <div class="col-lg-3 col-xs-4">
+                            <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3 id="today-ctr"><?= number_format($today_ctr, 2) ?></h3>
-                                    <p><?php _e('CTR за сегодня:') ?></p>
+                                    <h3></h3>
+                                    <p></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-percent"></i>
                                 </div>
                             </div>
                         </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-red">
+
+                        <div class="col-lg-3 col-xs-4">
+                            <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3><span id="today-costs"><?= number_format($today_costs, 2) ?></span>
-                                      <sup style="font-size: 20px"><?php echo get_globalsettings('current_currency', 'USD');?></sup></h3>
-                                    <p><?php _e('Расход за сегодня:') ?></p>
+                                    <h3><span></span>
+                                      <sup style="font-size: 20px">NGN</sup></h3>
+                                    <p></p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-arrow-down"></i>
+                                    <i class="fa fa-arrow-up"></i>
                                 </div>
                             </div>
                         </div>
-                        <!-- ./col -->
                     </div>
 
 
-                    <div class="row">
-
-                        <div class="col-sm-12">
-                            <div class="box box-success">
+                    <div id="_datatable-wrapper" class="row">
+                        <div class="col-md-9 col-xs-12 mt25">
+                            <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title"><?php _e('Показы / Клики') ?></h3>
+                                    <h3 class="box-title">Health Services/Claims</h3>
 
                                     <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     </div>
                                 </div>
-                                <div class="box-body">
-                                    <div class="chart">
-                                        <canvas id="chart-ciews-clicks" style="height:250px"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                <div class="box-body table-responsive">
+                                    <table id="_datatable" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Hospital</th>
+                                                <th>Description</th>
+                                                <th>Cost</th>
+                                                <th>Claim Amount</th>
+                                                <th>Status</th>
+                                                <th>Initiated</th>
+                                                <th>Completed</th>
+                                            </tr>
+                                        </thead>
 
+                                        <tbody>
 
-
-                        <div class="col-sm-6">
-                            <div class="box box-success">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"><?php _e('CTR') ?></h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <div class="chart">
-                                        <canvas id="lineChart" style="height:150px"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-
-                            <div class="box box-success">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"><?php _e('Расход') ?></h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <div class="chart">
-                                        <canvas id="barChart" style="height:150px"></canvas>
-                                    </div>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -162,5 +116,6 @@
         <?php include_once __DIR__ . "/modals.php"; ?>
         <?php include_once __DIR__ . "/js_templates.php"; ?>
         <?php include_once dirname(dirname(__DIR__)) . "/_scripts.php"; ?>
+
     </body>
 </html>

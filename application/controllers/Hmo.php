@@ -28,4 +28,9 @@ class Hmo extends MY_Controller
         $this->load->view('hmo/dashboard/dashboard', $this->viewdata + []);
     }
 
+    public function settings()
+    {
+        $this->load->view('hmo/settings/settings', $this->viewdata + []);
+    }
+
 }

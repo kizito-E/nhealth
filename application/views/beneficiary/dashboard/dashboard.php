@@ -29,21 +29,9 @@
                 <section class="content">
 
                     <div class="row">
-                        <div class="col-lg-3 col-xs-6">
 
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <h3></h3>
-                                    <p></p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-eye"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-xs-6">
-                            <div class="small-box" style="background: #3C8DBC; color: #fff;">
+                        <div class="col-lg-3 col-xs-4">
+                            <div class="small-box bg-blue">
                                 <div class="inner">
                                     <h3></h3>
                                     <p></p>
@@ -54,8 +42,8 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-yellow">
+                        <div class="col-lg-3 col-xs-4">
+                            <div class="small-box bg-blue">
                                 <div class="inner">
                                     <h3></h3>
                                     <p></p>
@@ -66,8 +54,8 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-green">
+                        <div class="col-lg-3 col-xs-4">
+                            <div class="small-box bg-blue">
                                 <div class="inner">
                                     <h3><span></span>
                                       <sup style="font-size: 20px">NGN</sup></h3>
@@ -81,7 +69,38 @@
                     </div>
 
 
-                    <div class="row">
+                    <div id="_datatable-wrapper" class="row">
+                        <div class="col-md-9 col-xs-12 mt25">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Health Services/Claims</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body table-responsive">
+                                    <table id="_datatable" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Hospital</th>
+                                                <th>Description</th>
+                                                <th>Cost</th>
+                                                <th>Claim Amount</th>
+                                                <th>Status</th>
+                                                <th>Initiated</th>
+                                                <th>Completed</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </section>

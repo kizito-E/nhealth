@@ -28,4 +28,9 @@ class Admin extends MY_Controller
         $this->load->view('admin/dashboard/dashboard', $this->viewdata + []);
     }
 
+    public function settings()
+    {
+        $this->load->view('admin/settings/settings', $this->viewdata + []);
+    }
+
 }
