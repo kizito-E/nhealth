@@ -16,7 +16,6 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-
             <li <?php menu_item('beneficiary\/settings'); ?> >
                 <a href="/beneficiary/settings">
                     <i class="fa fa-cog"></i> <span>Settings</span>
