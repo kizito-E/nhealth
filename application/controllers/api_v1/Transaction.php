@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Transaction extends REST_Controller {
+class Transaction extends MY_Controller {
 
     /**
      * Constructor
@@ -16,7 +16,7 @@ class Transaction extends REST_Controller {
         $res = [
             'status'    => 'Failed',
         ];
-        $this->response($res, $http_code = 500);
+        exit_json($res, $http_code = 500);
 
     }
 

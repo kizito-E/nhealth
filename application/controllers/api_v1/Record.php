@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Record extends REST_Controller {
+class Record extends MY_Controller {
 
     /**
      * Constructor
@@ -13,21 +13,17 @@ class Record extends REST_Controller {
 
     public function index_get($id)
     {
-        if (!is_numeric($id)) $this->response(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
+        if (!is_numeric($id)) exit_json(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
 
         $record_obj = $this->Record->get(['id' => $id]);
 
-        if (!$record_obj) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
+        if (!$record_obj) exit_json(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
-        $this->response(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_OK);
+        exit_json(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_OK);
     }
 
     public function create_post()
     {
-
-        $params = $this->post();
-
-        $this->validation->set_data($params);
         $this->validation->make([
             "user_id"    => "trim|required|numeric",
             "hmo_id"     => "trim|required|numeric|differs[user_id]",
@@ -50,27 +46,27 @@ class Record extends REST_Controller {
         ]);
 
         if ($this->validation->status() === false) {
-            $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
         }
 
         if ($params['amount_due'] > $params['cost']) {
             
-            $this->response(['error' => 'Amount payable to HMO cannot be greater than total cost!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'Amount payable to HMO cannot be greater than total cost!'], self::HTTP_NOT_ACCEPTABLE);
         }
 
         if (!$this->User->exists(['id' => $params['user_id']])) {
 
-            $this->response(['error' => 'User does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'User does not exist!'], self::HTTP_NOT_ACCEPTABLE);
         }
 
         if (!$this->User->exists(['id' => $params['hmo_id']])) {
 
-            $this->response(['error' => 'HMO does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'HMO does not exist!'], self::HTTP_NOT_ACCEPTABLE);
         }
 
         if (!$this->User->exists(['id' => $params['sp_id']])) {
 
-            $this->response(['error' => 'Service provider does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'Service provider does not exist!'], self::HTTP_NOT_ACCEPTABLE);
         }
 
         $user = $this->User->get(['id' => $params['user_id']]);
@@ -79,12 +75,12 @@ class Record extends REST_Controller {
 
         if ($user->role != 'beneficiary' || $hmo->role != 'hmo' || $sp->role != 'sp') {
 
-            $this->response(['error' => 'Error! Please verify user roles.'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'Error! Please verify user roles.'], self::HTTP_NOT_ACCEPTABLE);
         }
 
         if (!$this->Subscription->exists(['user_id' => $params['user_id']])) {
 
-            $this->response(['error' => 'User has no active subscription!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'User has no active subscription!'], self::HTTP_NOT_ACCEPTABLE);
         }
 
         $record_obj = $this->Record->add([
@@ -97,17 +93,14 @@ class Record extends REST_Controller {
             'status'     => 'pending approval'
         ]);
 
-        if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+        if (!$record_obj) exit_json(null, self::HTTP_INTERNAL_ERROR);
 
-        $this->response(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
+        exit_json(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
 
     }
 
     public function update_post()
     {
-        $params = $this->post();
-
-        $this->validation->set_data($params);
         $this->validation->make([
             "sp_id"      => "trim|required|numeric",
             "record_id"  => "trim|required|numeric",
@@ -125,25 +118,25 @@ class Record extends REST_Controller {
         ]);
 
         if ($this->validation->status() === false) {
-            $this->response(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
         }
 
         if (!$this->Record->exists(['id' => $params['record_id']])) {
 
-            $this->response(['error' => 'Record does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'Record does not exist!'], self::HTTP_NOT_ACCEPTABLE);
         }
         $record = $this->Record->get(['id' => $params['record_id']]);
 
         if ($record->sp_id != $params['sp_id']) {
 
-            $this->response(['error' => 'Error! Unauthorized Access.'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(['error' => 'Error! Unauthorized Access.'], self::HTTP_NOT_ACCEPTABLE);
         }
         
         if (isset($params['amount_due']) && isset($params['cost'])) {
 
             if ($params['amount_due'] > $params['cost']) {
             
-                $this->response(['error' => 'Amount payable to HMO cannot be greater than total cost!'], self::HTTP_NOT_ACCEPTABLE);
+                exit_json(['error' => 'Amount payable to HMO cannot be greater than total cost!'], self::HTTP_NOT_ACCEPTABLE);
             }
         }
 
@@ -157,9 +150,9 @@ class Record extends REST_Controller {
             'date_updated'=> date('Y-m-d H:i:s')
         ]);
 
-        if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
+        if (!$record_obj) exit_json(null, self::HTTP_INTERNAL_ERROR);
 
-        $this->response(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
+        exit_json(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
 
     }
 
@@ -167,20 +160,20 @@ class Record extends REST_Controller {
     {
         $record_objs = $this->Record->fetch();
 
-        if (!$record_objs) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
+        if (!$record_objs) exit_json(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
-        $this->response(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
+        exit_json(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
     }
 
     public function user_records_get($id)
     {
-        if (!is_numeric($id)) $this->response(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
+        if (!is_numeric($id)) exit_json(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
 
         $record_objs = $this->Record->fetch(['user_id' => $id]);
 
-        if (!$record_objs) $this->response(['status' => false, 'error' => "No records found"], self::HTTP_OK);
+        if (!$record_objs) exit_json(['status' => false, 'error' => "No records found"], self::HTTP_OK);
 
-        $this->response(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
+        exit_json(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
     }
 
 }
