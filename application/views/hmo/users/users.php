@@ -20,13 +20,13 @@
             <div class="content-wrapper">
 
                 <section class="content-header">
-                    <h1>Managed beneficiaries
+                    <h1>Beneficiaries & Service providers
                         <button class="btn btn-primary" data-target="#add-user" data-toggle="modal">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add a beneficiary
+                            <i class="fa fa-plus" aria-hidden="true"></i> Create an account
                         </button>
                     </h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="/"><i class="fa fa-users"></i> Beneficiaries</a></li>
+                        <li class="active"><a href="/"><i class="fa fa-users"></i> Managed accounts</a></li>
                     </ol>
                 </section>
 
@@ -35,7 +35,7 @@
                         <div class="col-md-12 mt25">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Managed beneficiaries</h3>
+                                    <h3 class="box-title">Managed accounts</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>

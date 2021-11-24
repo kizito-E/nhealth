@@ -29,9 +29,14 @@ class Hmo extends MY_Controller
         $this->load->view('hmo/dashboard/dashboard', $this->viewdata + []);
     }
 
-    public function beneficiaries()
+    public function accounts()
     {
-        $this->load->view('hmo/beneficiaries/beneficiaries', $this->viewdata + []);
+        $this->load->view('hmo/users/users', $this->viewdata + []);
+    }
+
+    public function subscriptions()
+    {
+        $this->load->view('hmo/subscriptions/subscriptions', $this->viewdata + []);
     }
 
     public function settings()

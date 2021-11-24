@@ -17,9 +17,15 @@
                 </a>
             </li>
 
-            <li <?php menu_item('admin\/beneficiaries'); ?> >
-                <a href="/admin/beneficiaries">
-                    <i class="fa fa-users"></i> <span>Beneficiaries</span>
+            <li <?php menu_item('admin\/accounts'); ?> >
+                <a href="/admin/accounts">
+                    <i class="fa fa-users"></i> <span>All accounts</span>
+                </a>
+            </li>
+
+            <li <?php menu_item('admin\/subscriptions'); ?> >
+                <a href="/admin/subscriptions">
+                    <i class="fa fa-medkit"></i> <span>Subscriptions</span>
                 </a>
             </li>
 

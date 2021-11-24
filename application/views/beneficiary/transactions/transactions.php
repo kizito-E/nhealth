@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SP Dashboard -nHealth</title>
+        <title>Transactions -nHealth</title>
         <meta name="csrf" content="<?php csrf_token(); ?>">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <?php include_once dirname(dirname(__DIR__)) . "/_styles.php"; ?>
@@ -20,64 +20,16 @@
             <div class="content-wrapper">
 
                 <section class="content-header">
-                    <h1>SP dashboard</h1>
+                    <h1>Payment transactions</h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li class="active"><a href="/"><i class="fa fa-users"></i> Transactions</a></li>
                     </ol>
                 </section>
 
                 <section class="content">
-
-                    <div class="row">
-
-                        <div class="col-lg-3 col-xs-4">
-                            <div class="small-box bg-blue">
-                                <div class="inner">
-                                    <h3></h3>
-                                    <p></p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-crosshairs"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-xs-4">
-                            <div class="small-box bg-blue">
-                                <div class="inner">
-                                    <h3></h3>
-                                    <p></p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-percent"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-xs-4">
-                            <div class="small-box bg-blue">
-                                <div class="inner">
-                                    <h3><span></span>
-                                      <sup style="font-size: 20px">NGN</sup></h3>
-                                    <p></p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-arrow-up"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div id="_datatable-wrapper" class="row">
-                        <div class="col-md-9 col-xs-12 mt25">
+                        <div class="col-md-8 mt25">
                             <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Health Services/Claims</h3>
-                                    <button class="btn btn-primary pull-right" data-target="#new-service" data-toggle="modal">
-                                        <i class="fa fa-plus" aria-hidden="true"></i> New service request
-                                    </button>
-                                </div>
                                 <div class="box-body table-responsive">
                                     <table id="_datatable" class="table table-bordered table-striped">
                                         <thead>

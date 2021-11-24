@@ -30,6 +30,11 @@ class Beneficiary extends MY_Controller
         $this->load->view('beneficiary/dashboard/dashboard', $this->viewdata + []);
     }
 
+    public function transactions()
+    {
+        $this->load->view('beneficiary/transactions/transactions', $this->viewdata + []);
+    }
+
     public function settings()
     {
         $this->load->view('beneficiary/settings/settings', $this->viewdata + []);

@@ -75,9 +75,9 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Health Services/Claims</h3>
 
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    </div>
+                                    <button class="btn btn-primary pull-right" data-target="#new-subscription" data-toggle="modal">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Create subscription
+                                    </button>
                                 </div>
                                 <div class="box-body table-responsive">
                                     <table id="_datatable" class="table table-bordered table-striped">

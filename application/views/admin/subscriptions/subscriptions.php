@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Beneficiaries -nHealth</title>
+        <title>Subscriptions -nHealth</title>
         <meta name="csrf" content="<?php csrf_token(); ?>">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <?php include_once dirname(dirname(__DIR__)) . "/_styles.php"; ?>
@@ -20,27 +20,16 @@
             <div class="content-wrapper">
 
                 <section class="content-header">
-                    <h1>All beneficiaries
-                        <button class="btn btn-primary" data-target="#add-user" data-toggle="modal">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add a beneficiary
-                        </button>
-                    </h1>
+                    <h1>Beneficiary subscriptions</h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="/"><i class="fa fa-users"></i> Beneficiaries</a></li>
+                        <li class="active"><a href="/"><i class="fa fa-users"></i> Subscriptions</a></li>
                     </ol>
                 </section>
 
                 <section class="content">
                     <div id="_datatable-wrapper" class="row">
-                        <div class="col-md-12 mt25">
+                        <div class="col-md-8 mt25">
                             <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">All beneficiaries</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    </div>
-                                </div>
                                 <div class="box-body table-responsive">
                                     <table id="_datatable" class="table table-bordered table-striped">
                                         <thead>

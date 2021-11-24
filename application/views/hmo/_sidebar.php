@@ -17,9 +17,15 @@
                 </a>
             </li>
 
-            <li <?php menu_item('hmo\/beneficiaries'); ?> >
-                <a href="/hmo/beneficiaries">
-                    <i class="fa fa-users"></i> <span>Beneficiaries</span>
+            <li <?php menu_item('hmo\/accounts'); ?> >
+                <a href="/hmo/accounts">
+                    <i class="fa fa-users"></i> <span>Accounts</span>
+                </a>
+            </li>
+
+            <li <?php menu_item('hmo\/subscriptions'); ?> >
+                <a href="/hmo/subscriptions">
+                    <i class="fa fa-medkit"></i> <span>Subscriptions</span>
                 </a>
             </li>
 

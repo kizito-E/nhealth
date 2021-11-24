@@ -29,9 +29,14 @@ class Admin extends MY_Controller
         $this->load->view('admin/dashboard/dashboard', $this->viewdata + []);
     }
 
-    public function beneficiaries()
+    public function accounts()
     {
-        $this->load->view('admin/beneficiaries/beneficiaries', $this->viewdata + []);
+        $this->load->view('admin/users/users', $this->viewdata + []);
+    }
+
+    public function subscriptions()
+    {
+        $this->load->view('admin/subscriptions/subscriptions', $this->viewdata + []);
     }
 
     public function settings()

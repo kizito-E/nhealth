@@ -16,6 +16,12 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
+
+            <li <?php menu_item('beneficiary\/transactions'); ?> >
+                <a href="/beneficiary/transactions">
+                    <i class="fa fa-money"></i> <span>Transactions</span>
+                </a>
+            </li>
             
             <li <?php menu_item('beneficiary\/settings'); ?> >
                 <a href="/beneficiary/settings">
