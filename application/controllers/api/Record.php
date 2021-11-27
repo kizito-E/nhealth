@@ -22,12 +22,10 @@ class Record extends MY_Controller {
         exit_json(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_OK);
     }
 
-    public function create_post()
+    public function create()
     {
         $this->validation->make([
             "user_id"    => "trim|required|numeric",
-            "hmo_id"     => "trim|required|numeric|differs[user_id]",
-            "sp_id"      => "trim|required|numeric|differs[user_id]|differs[hmo_id]",
             "description"=> "trim|required|alpha_numeric_spaces|min_length[3]|max_length[255]",
             "cost"       => "trim|required|numeric",
             "amount_due" => "trim|required|numeric",
@@ -35,67 +33,53 @@ class Record extends MY_Controller {
             "user_id.required"=> "Please provide a valid user id!",
             "user_id.numeric" => "User id must be numeric!",
             "description.*"   => "Please enter a valid description of 3-255 characters!",
-            "hmo_id.required" => "Please provide a valid HMO id!",
-            "hmo_id.differs" => "User id and HMO id cannot be the same!",
-            "hmo_id.numeric" => "HMO id must be numeric!",
-            "sp_id.required" => "Please provide a valid service provider id!",
-            "sp_id.differs"  => "User id, HMO id, and service provider IDs cannot be the same!",
-            "sp_id.numeric"  => "Service provider id must be numeric!",
             "cost.*"         => "Please enter a valid cost for this service!",
             "amount_due.*"   => "Please enter a valid amount payable by the HMO!"
         ]);
 
         if ($this->validation->status() === false) {
-            exit_json(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(1, $this->validation->first_error());
         }
+
+        $params = $this->input->post();
 
         if ($params['amount_due'] > $params['cost']) {
             
-            exit_json(['error' => 'Amount payable to HMO cannot be greater than total cost!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(1, 'Amount payable to HMO cannot be greater than total cost!');
         }
 
         if (!$this->User->exists(['id' => $params['user_id']])) {
 
-            exit_json(['error' => 'User does not exist!'], self::HTTP_NOT_ACCEPTABLE);
-        }
-
-        if (!$this->User->exists(['id' => $params['hmo_id']])) {
-
-            exit_json(['error' => 'HMO does not exist!'], self::HTTP_NOT_ACCEPTABLE);
-        }
-
-        if (!$this->User->exists(['id' => $params['sp_id']])) {
-
-            exit_json(['error' => 'Service provider does not exist!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(1, 'User does not exist!');
         }
 
         $user = $this->User->get(['id' => $params['user_id']]);
-        $hmo  = $this->User->get(['id' => $params['hmo_id']]);
-        $sp   = $this->User->get(['id' => $params['sp_id']]);
 
-        if ($user->role != 'beneficiary' || $hmo->role != 'hmo' || $sp->role != 'sp') {
+        if ($user->role != 'beneficiary') {
 
-            exit_json(['error' => 'Error! Please verify user roles.'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(1, 'Error! Please provide a valid beneficiary ID.');
         }
+
+        if ($params['user_id'] == userdata()->id) exit_json(1, 'Beneficiary and service provider cannot be the same!');
 
         if (!$this->Subscription->exists(['user_id' => $params['user_id']])) {
 
-            exit_json(['error' => 'User has no active subscription!'], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(1, 'User has no active subscription!');
         }
 
         $record_obj = $this->Record->add([
             'user_id'    => $params['user_id'],
-            'hmo_id'     => $params['hmo_id'],
-            'sp_id'      => $params['sp_id'],
+            'hmo_id'     => $user->hmo_id,
+            'sp_id'      => userdata()->id,
             'description'=> $params['description'],
             'cost'       => $params['cost'],
             'amount_due' => $params['amount_due'],
             'status'     => 'pending approval'
         ]);
 
-        if (!$record_obj) exit_json(null, self::HTTP_INTERNAL_ERROR);
+        if (!$record_obj) exit_json(1, 'Error! Unable to create service record.');
 
-        exit_json(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
+        exit_json(0, 'Success! Service initiated', $record_obj);
 
     }
 

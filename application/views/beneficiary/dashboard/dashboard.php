@@ -28,41 +28,41 @@
 
                 <section class="content">
 
-                    <div class="row">
+                <div class="row">
 
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3></h3>
-                                    <p></p>
+                                    <h3>Gold</h3>
+                                    <p>Current Plan</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-crosshairs"></i>
+                                    <i class="fa fa-heartbeat"></i>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-xs-4">
-                            <div class="small-box bg-blue">
+                            <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3></h3>
-                                    <p></p>
+                                    <h3>73</h3>
+                                    <p>This year's visits</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-percent"></i>
+                                    <i class="fa fa-stethoscope"></i>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-xs-4">
-                            <div class="small-box bg-blue">
+                            <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3><span></span>
-                                      <sup style="font-size: 20px">NGN</sup></h3>
-                                    <p></p>
+                                    <h3><span>73,383</span>
+                                    <sup style="font-size: 20px">NGN</sup></h3>
+                                    <p>Total amount covered</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-arrow-up"></i>
+                                    <i class="fa fa-arrow-down"></i>
                                 </div>
                             </div>
                         </div>

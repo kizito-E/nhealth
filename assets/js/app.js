@@ -382,6 +382,25 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				}, {
 					data: "date_completed"
 				}]
+			});
+			new Vue({
+				el: "#new-service",
+				data: {
+					user_id: "",
+					cost: "",
+					amount_due: "",
+					description: "",
+					status_message: "",
+					error: !1
+				},
+				methods: {
+					addService: function() {
+						var e = this;
+						e.error = !1, $.post("/api/record/create", e.$data, function(t) {
+							t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message)
+						}, "json")
+					}
+				}
 			})
 		}
 		if(isPage("beneficiary/dashboard(.*)")) {
