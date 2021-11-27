@@ -29,7 +29,7 @@ class Admin extends MY_Controller
         $this->load->view('admin/dashboard/dashboard', $this->viewdata + []);
     }
 
-    public function accounts()
+    public function users()
     {
         $this->load->view('admin/users/users', $this->viewdata + []);
     }

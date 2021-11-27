@@ -46,13 +46,13 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Hospital</th>
-                                                <th>Description</th>
-                                                <th>Cost</th>
-                                                <th>Claim Amount</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>HMO</th>
+                                                <th>Plan</th>
                                                 <th>Status</th>
-                                                <th>Initiated</th>
-                                                <th>Completed</th>
+                                                <th>Enrolled</th>
                                             </tr>
                                         </thead>
 

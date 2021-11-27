@@ -156,13 +156,30 @@ class Record extends MY_Controller {
 
     }
 
-    public function list_get()
+    public function fetch()
     {
-        $record_objs = $this->Record->fetch();
+        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
 
-        if (!$record_objs) exit_json(['status' => false, 'error' => "No records found"], self::HTTP_OK);
+        $where = [];
 
-        exit_json(['status' => 'success', 'records' => (array) $record_objs], self::HTTP_OK);
+        if(is_hmo() || is_sp() || is_administrator()) $where["user_id !="] = userdata()->id;
+
+        if(is_beneficiary()) $where["user_id"] = userdata()->id;
+        if(is_hmo()) $where["hmo_id"] = userdata()->id;
+        if(is_sp())  $where["sp_id"] = userdata()->id;
+
+        $record_objs = $this->Record->fetch_dt($where);
+
+        foreach ($record_objs['data'] as $key => &$record_obj) {
+
+            $bf  = $this->User->get(['id' => $record_obj['user_id']]);
+            
+            $record_obj['beneficiary'] = $bf->first_name . ' ' . $bf->last_name;
+            $record_obj['sp']  = $this->User->get(['id' => $record_obj['sp_id']])->business_name;
+            $record_obj['hmo'] = $this->User->get(['id' => $record_obj['hmo_id']])->business_name;
+        }
+
+        exit(json_encode(array_merge(['error' => 0], $record_objs), JSON_PRETTY_PRINT));
     }
 
     public function user_records_get($id)

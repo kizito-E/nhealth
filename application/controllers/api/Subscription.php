@@ -149,13 +149,31 @@ class Subscription extends MY_Controller {
 
     }
 
-    public function list_get()
+    public function fetch()
     {
-        $subscription_objs = $this->Subscription->fetch();
+        (is_administrator() || is_hmo()) OR exit_json(1, "Unauthorized Access!");
+        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
 
-        if (!$subscription_objs) exit_json(['status' => false, 'error' => "No records found"], self::HTTP_OK);
+        $where = [];
 
-        exit_json(['status' => 'success', 'subscriptions' => (array) $subscription_objs], self::HTTP_OK);
+        if(is_hmo() || is_administrator()) $where["user_id !="] = userdata()->id;
+
+        $subscription_objs = $this->Subscription->fetch_dt($where);
+
+        foreach ($subscription_objs['data'] as $key => &$subscription_obj) {
+
+            $user = $this->User->get(['id' => $subscription_obj['user_id']]);
+            
+            $subscription_obj['beneficiary'] = $user->first_name . ' ' . $user->last_name;
+            $subscription_obj['plan'] = $this->Plan->get(['id' => $subscription_obj['plan_id']])->name;
+
+            if (is_hmo() && $user->hmo_id != userdata()->id) {
+                unset($subscription_objs['data'][$key]);
+                $subscription_objs['data'] = array_values($subscription_objs['data']);
+            }
+        }
+
+        exit(json_encode(array_merge(['error' => 0], $subscription_objs), JSON_PRETTY_PRINT));
     }
 
 }

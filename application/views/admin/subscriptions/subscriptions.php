@@ -35,13 +35,9 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Hospital</th>
-                                                <th>Description</th>
-                                                <th>Cost</th>
-                                                <th>Claim Amount</th>
-                                                <th>Status</th>
-                                                <th>Initiated</th>
-                                                <th>Completed</th>
+                                                <th>Plan</th>
+                                                <th>Beneficiary</th>
+                                                <th>Date Created</th>
                                             </tr>
                                         </thead>
 

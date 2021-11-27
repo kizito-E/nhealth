@@ -70,7 +70,7 @@
 
 
                     <div id="_datatable-wrapper" class="row">
-                        <div class="col-md-9 col-xs-12 mt25">
+                        <div class="col-md-12 mt25">
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Health Services/Claims</h3>
@@ -83,7 +83,8 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Hospital</th>
+                                                <th>Beneficiary</th>
+                                                <th>HMO</th>
                                                 <th>Description</th>
                                                 <th>Cost</th>
                                                 <th>Claim Amount</th>

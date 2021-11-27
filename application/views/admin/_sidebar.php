@@ -17,8 +17,8 @@
                 </a>
             </li>
 
-            <li <?php menu_item('admin\/accounts'); ?> >
-                <a href="/admin/accounts">
+            <li <?php menu_item('admin\/users'); ?> >
+                <a href="/admin/users">
                     <i class="fa fa-users"></i> <span>All accounts</span>
                 </a>
             </li>

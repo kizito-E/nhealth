@@ -10,7 +10,7 @@ class User_model extends MY_Model {
 
         $this->table        = 'users';
         $this->primary_key  = 'id';
-        $this->result_class = null;  //'results/user_result'
+        $this->result_class = null;  //'results/user_result';
     }
 
 

@@ -29,7 +29,7 @@ class Hmo extends MY_Controller
         $this->load->view('hmo/dashboard/dashboard', $this->viewdata + []);
     }
 
-    public function accounts()
+    public function users()
     {
         $this->load->view('hmo/users/users', $this->viewdata + []);
     }

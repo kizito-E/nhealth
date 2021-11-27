@@ -36,16 +36,18 @@
                                 <legend>Change password</legend>
                                 <div class="row">
                                     <div class="col-md-5">
+                                            <p v-cloak v-if="error && status_message" class="bg-danger">{{status_message}}</p>
+                                            <p v-cloak v-if="!error && status_message" class="bg-success">{{status_message}}</p>
 
                                         <div class="form-group">
                                             <label>Old password</label>
-                                            <input v-model="old_password" class="form-control" type="text"  autocomplete="off">
+                                            <input v-model="old_password" class="form-control" type="password"  autocomplete="off">
                                         </div>
 
 
                                         <div class="form-group">
                                             <label>New Password</label>
-                                            <input v-model="new_password" class="form-control" type="text" autocomplete="off">
+                                            <input v-model="new_password" class="form-control" type="password" autocomplete="off">
                                         </div>
 
                                     </div>
@@ -55,11 +57,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <button @click="set" class="btn btn-primary">
-                                <i v-if="button_active" class="fa fa-circle-o-notch fa-spin fa-fw"></i>
-                                <i v-else class="fa fa-check fa-fw"></i>
-                                Save
-                            </button>
+                            <button @click="update" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Save</button>
                         </div>
 
                     </div>

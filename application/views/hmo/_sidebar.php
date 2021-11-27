@@ -17,8 +17,8 @@
                 </a>
             </li>
 
-            <li <?php menu_item('hmo\/accounts'); ?> >
-                <a href="/hmo/accounts">
+            <li <?php menu_item('hmo\/users'); ?> >
+                <a href="/hmo/users">
                     <i class="fa fa-users"></i> <span>Accounts</span>
                 </a>
             </li>

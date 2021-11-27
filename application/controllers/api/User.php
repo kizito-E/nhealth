@@ -7,7 +7,7 @@ class User extends MY_Controller {
         parent::__construct();
     }
 
-    public function index_get($id)
+    public function index($id)
     {
         if (!is_numeric($id)) exit_json(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
 
@@ -20,7 +20,7 @@ class User extends MY_Controller {
         exit_json(['status' => 'success', 'user' => (array) $user_obj], self::HTTP_OK);
     }
 
-    public function auth_post()
+    public function auth()
     {
         $this->validation->make([
             "email"         => "trim|required|valid_email",
@@ -51,8 +51,11 @@ class User extends MY_Controller {
 
     }
 
-    public function create_post()
+    public function create()
     {
+        (is_administrator() || is_hmo()) OR exit_json(1, "Unauthorized Access!");
+        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
+
         $this->validation->make([
             "first_name"    => "trim|alpha|min_length[2]",
             "last_name"     => "trim|alpha|min_length[2]",
@@ -74,8 +77,10 @@ class User extends MY_Controller {
         ]);
 
         if ($this->validation->status() === false) {
-            exit_json(['error' => $this->validation->first_error()], self::HTTP_NOT_ACCEPTABLE);
+            exit_json(1, $this->validation->first_error());
         }
+
+        $params = $this->input->post();
 
         $user_obj = $this->User->add([
             'first_name'    => isset($params['first_name']) ? $params['first_name'] : '',
@@ -87,13 +92,47 @@ class User extends MY_Controller {
             'status'        => 1,
         ]);
 
-        if (!$user_obj) exit_json(null, self::HTTP_INTERNAL_ERROR);
+        if (!$user_obj) exit_json(1, 'Error: Unable to create user.');
 
-        exit_json(['status' => 'success', 'user_id' => $user_obj->id], self::HTTP_CREATED);
+        $user_obj->activation_link = base_url() . "reset_password/" . $this->User->generate_reset_password_token([
+            'email' => $params['email']
+        ]);
+
+        exit_json(0, 'Success: User enrolled!', $user_obj);
 
     }
 
-    public function update_post()
+    public function update_password()
+    {
+        $this->validation->make([
+            'old_password' => "required|callback__check_old_password",
+            'new_password' => "required|differs[old_password]|min_length[8]|max_length[20]",
+                ], [
+            'old_password.required'            => "Old password is required",
+            'old_password._check_old_password' => "Old password is incorrect",
+            'new_password.differs'             => "New password must be different from old password",
+            'new_password.min_length'          => "Password must be at least 8 characters",
+            'new_password.max_length'          => "Password cannot be more than 20 characters",
+        ]);
+
+        if ($this->validation->status() === false) {
+            exit_json(1, $this->validation->first_error());
+        }
+
+        $this->User->set_password(userdata()->id, $this->input->post('new_password'));
+
+        exit_json(0, "Settings updated!");
+    }
+
+    public function _check_old_password($old_password)
+    {
+        return $this->User->exists([
+            'id'       => userdata()->id,
+            'password' => superhash($old_password)
+        ]);
+    }
+
+    public function update()
     {
         $this->validation->make([
             "user_id"       => "trim|required|numeric",
@@ -138,7 +177,7 @@ class User extends MY_Controller {
 
     }
 
-    public function assign_hmo_post()
+    public function assign()
     {
         $this->validation->make([
             "user_id" =>  "trim|required|numeric",
@@ -186,20 +225,29 @@ class User extends MY_Controller {
 
     }
 
-    public function list_get()
+    public function fetch()
     {
-        $user_objs = $this->User->fetch();
+        (is_administrator() || is_hmo()) OR exit_json(1, "Unauthorized Access!");
+        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
 
-        if (!$user_objs) exit_json(null, self::HTTP_INTERNAL_ERROR);
+        $where = [
+            "role !=" => "admin"
+        ];
 
-        foreach ($user_objs as &$user_obj) {
-            unset($user_obj->password);
+        if(is_hmo()) $where['hmo_id'] = userdata()->id;
+
+        $user_objs = $this->User->fetch_dt($where);
+
+        foreach ($user_objs['data'] as &$user_obj) {
+
+            $user_obj['hmo'] = $user_obj['hmo_id'] != 0 ? $this->User->get(['id' => $user_obj['hmo_id']])->business_name : '-';
+            $user_obj['plan'] = $user_obj['plan_id'] != 0 ? $this->Plan->get(['id' => $user_obj['plan_id']])->name : '-';
         }
 
-        exit_json(['status' => 'success', 'users' => (array) $user_objs], self::HTTP_OK);
+        exit(json_encode(array_merge(['error' => 0], $user_objs), JSON_PRETTY_PRINT));
     }
 
-    public function approve_service_post()
+    public function approve_service()
     {
         $this->validation->make([
             "user_id"   => "trim|required|numeric",
@@ -241,7 +289,7 @@ class User extends MY_Controller {
 
     }
 
-    public function update_service_post()
+    public function update_service()
     {
         $this->validation->make([
             "user_id"   => "trim|required|numeric",
