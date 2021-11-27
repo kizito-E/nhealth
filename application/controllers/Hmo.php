@@ -26,7 +26,15 @@ class Hmo extends MY_Controller
 
     public function dashboard()
     {
-        $this->load->view('hmo/dashboard/dashboard', $this->viewdata + []);
+        $data = [
+            'total_beneficiaries' => $this->db->where(['hmo_id' => userdata()->id])->count_all_results('users'),
+            'total_amount' => $this->db->where(['hmo_id' => userdata()->id])->select_sum('amount_due')->get('records')->row()->amount_due,
+            'week_service' => $this->db->where([
+                'hmo_id' => userdata()->id,
+                'date_initiated >=' => gmdate('Y-m-d H:i:s', time() - (86400 * 7))
+            ])->count_all_results('records')
+        ];
+        $this->load->view('hmo/dashboard/dashboard', $this->viewdata + $data);
     }
 
     public function users()

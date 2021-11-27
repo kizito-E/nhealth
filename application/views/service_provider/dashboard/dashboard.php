@@ -33,8 +33,8 @@
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3>738</h3>
-                                    <p>Beneficiaries serviced</p>
+                                    <h3><?php echo $total_beneficiaries ?></h3>
+                                    <p>Beneficiaries served</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-users"></i>
@@ -45,8 +45,8 @@
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>73</h3>
-                                    <p>This month's services</p>
+                                    <h3><?php echo $week_service ?></h3>
+                                    <p>This week's services</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-stethoscope"></i>
@@ -57,9 +57,9 @@
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3><span>73,383</span>
+                                    <h3><span><?php echo number_format($total_amount, 2) ?></span>
                                     <sup style="font-size: 20px">NGN</sup></h3>
-                                    <p>Total amount covered</p>
+                                    <p>Total amount claimed</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-arrow-down"></i>

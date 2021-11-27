@@ -33,7 +33,7 @@
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3>Gold</h3>
+                                    <h3><?php echo ucfirst($current_plan) ?></h3>
                                     <p>Current Plan</p>
                                 </div>
                                 <div class="icon">
@@ -45,7 +45,7 @@
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>73</h3>
+                                    <h3><?php echo $year_visit ?></h3>
                                     <p>This year's visits</p>
                                 </div>
                                 <div class="icon">
@@ -57,9 +57,9 @@
                         <div class="col-lg-3 col-xs-4">
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3><span>73,383</span>
+                                    <h3><span><?php echo number_format($total_amount, 2) ?></span>
                                     <sup style="font-size: 20px">NGN</sup></h3>
-                                    <p>Total amount covered</p>
+                                    <p>Total amount claimed</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-arrow-down"></i>
@@ -75,9 +75,9 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Health Services/Claims</h3>
 
-                                    <button class="btn btn-primary pull-right" data-target="#new-subscription" data-toggle="modal">
+                                    <!--<button class="btn btn-primary pull-right" data-target="#new-subscription" data-toggle="modal">
                                         <i class="fa fa-plus" aria-hidden="true"></i> Create subscription
-                                    </button>
+                                    </button>-->
                                 </div>
                                 <div class="box-body table-responsive">
                                     <table id="_datatable" class="table table-bordered table-striped">

@@ -36,8 +36,8 @@
                                 <legend>Change password</legend>
                                 <div class="row">
                                     <div class="col-md-5">
-                                            <p v-cloak v-if="error && status_message" class="bg-danger">{{status_message}}</p>
-                                            <p v-cloak v-if="!error && status_message" class="bg-success">{{status_message}}</p>
+                                        <p v-cloak v-if="error && status_message" class="bg-danger">{{status_message}}</p>
+                                        <p v-cloak v-if="!error && status_message" class="bg-success">{{status_message}}</p>
 
                                         <div class="form-group">
                                             <label>Old password</label>

@@ -63,6 +63,7 @@ class User extends MY_Controller {
             "email"         => "trim|required|valid_email|is_unique[users.email]",
             "password"      => "trim|required|min_length[8]|max_length[20]",
             "role"          => "required|in_list[beneficiary,hmo,sp,admin]",
+            "plan_id"       => "numeric|in_list[1,2,3]",
         ], [
             "first_name.*"           => "Please provide a valid first name!",
             "last_name.*"            => "Please provide a valid last name!",
@@ -74,6 +75,7 @@ class User extends MY_Controller {
             "password.min_length"    => "Password must be at least {param} сharacters!",
             "password.max_length"    => "Password cannot be more than {param} сharacters!",
             "role.*"                 => "Please provide a valid account role!",
+            "plan_id.*"              => "Please select a valid plan!",
         ]);
 
         if ($this->validation->status() === false) {
@@ -89,7 +91,8 @@ class User extends MY_Controller {
             'email'         => $params['email'],
             'password'      => superhash($params['password']),
             'role'          => $params['role'],
-            'status'        => 1,
+            'plan_id'       => $params['role'] == 'beneficiary' ? $params['plan_id'] : 0,
+            'status'        => -1,
         ]);
 
         if (!$user_obj) exit_json(1, 'Error: Unable to create user.');

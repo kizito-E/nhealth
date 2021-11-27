@@ -1061,7 +1061,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		"../../datatables": 87
 	}],
 	51: [function(t, e, a) {
-		(isPage("admin/users(.*)") || isPage("hmo/users(.*)"))  && (t("./dt"), t("./actions"), t("./vue-add-user"))
+		isPage("(admin|hmo)/users(.*)") && (t("./dt"), t("./actions"), t("./vue-add-user"))
 	}, {
 		"./actions": 49,
 		"./dt": 50,
@@ -1077,8 +1077,10 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				email: "",
 				password: "",
 				role: "beneficiary",
+				plan_id: "",
 				status_message: "",
-				activation_link: ""
+				activation_link: "",
+				error: !1
 			},
 			methods: {
 				randomPassword: function() {
@@ -1090,9 +1092,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				addUser: function() {
 					var e = this;
-					e.randomPassword();
-					$.post("/api/user/create", e.$data, function(t) {
-						t.error ? e.status_message = t.message : (e.status_message = t.message, e.activation_link = t.data.activation_link)
+					e.randomPassword(), e.error = !1, $.post("/api/user/create", e.$data, function(t) {
+						t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message, e.activation_link = t.data.activation_link)
 					}, "json")
 				}
 			}
