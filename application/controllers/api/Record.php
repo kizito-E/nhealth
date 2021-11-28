@@ -13,15 +13,9 @@ class Record extends MY_Controller {
         check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
     }
 
-    public function index_get($id)
+    public function index()
     {
-        if (!is_numeric($id)) exit_json(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
-
-        $record_obj = $this->Record->get(['id' => $id]);
-
-        if (!$record_obj) exit_json(['status' => false, 'error' => "No records found"], self::HTTP_OK);
-
-        exit_json(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_OK);
+        exit;
     }
 
     public function create()

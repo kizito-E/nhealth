@@ -9,17 +9,9 @@ class User extends MY_Controller {
         check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
     }
 
-    public function index($id)
+    public function index()
     {
-        if (!is_numeric($id)) exit_json(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
-
-        $user_obj = $this->User->get(['id' => $id]);
-
-        if (!$user_obj) exit_json(null, self::HTTP_INTERNAL_ERROR);
-
-        unset($user_obj->password);
-
-        exit_json(['status' => 'success', 'user' => (array) $user_obj], self::HTTP_OK);
+        exit;
     }
 
     public function auth()

@@ -13,26 +13,11 @@ class Subscription extends MY_Controller {
         check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
     }
 
-    public function index_get($id)
+    public function index()
     {
-        if (!is_numeric($id)) exit_json(['error' => 'parameter must be an integer'], self::HTTP_NOT_ACCEPTABLE);
-
-        $subscription_obj = $this->Subscription->get(['id' => $id]);
-
-        if (!$subscription_obj) exit_json(['status' => false, 'error' => "No records found"], self::HTTP_OK);
-
-        $plan_obj = $this->Plan->get(['id' => $subscription_obj->plan_id]);
-        $user_obj = $this->User->get(['id' => $subscription_obj->user_id]);
-        unset($user_obj->password);
-
-        exit_json([
-            'status' => 'success', 
-            'subscription' => (array) $subscription_obj,
-            'plan' => (array) $plan_obj,
-            'user' => (array) $user_obj
-        ], self::HTTP_OK);
+        exit;
     }
-
+    
     public function create_post()
     {
         $this->validation->make([
