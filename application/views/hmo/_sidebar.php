@@ -23,6 +23,12 @@
                 </a>
             </li>
 
+            <li <?php menu_item(['hmo\/providers', 'hmo\/sp_report']); ?> >
+                <a href="/hmo/providers">
+                    <i class="fa fa-hospital-o"></i> <span>Service Providers</span>
+                </a>
+            </li>
+
             <li <?php menu_item('hmo\/subscriptions'); ?> >
                 <a href="/hmo/subscriptions">
                     <i class="fa fa-medkit"></i> <span>Subscriptions</span>

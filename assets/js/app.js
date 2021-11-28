@@ -1022,6 +1022,36 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				}]
 			})
 		}
+		if(isPage("admin/managers(.*)")){
+			t("../../datatables")({
+				url: "/api/user/fetch/hmo",
+				order: [
+					[0, "desc"]
+				],
+				columns: [{
+					data: "id"
+				}, {
+					data: null,
+					render: function(t, e, a) {
+						return a.business_name
+					}
+				}, {
+					data: "email"
+				}, {
+					data: null,
+					render: function(t, e, a) {
+						return "<a href='/admin/hmo_report/" + a.id + "' target='_blank' class='btn btn-sm btn-primary'><i class='fa fa-th-list'></i> Report</a>"
+					}
+				}, {
+					data: "status",
+					render: function(t, e, a) {
+						return tmpl("status", a)
+					}
+				}, {
+					data: "created"
+				}]
+			})
+		}
 		if(isPage("hmo/users(.*)")){
 			t("../../datatables")({
 				url: "/api/user/fetch",
@@ -1057,11 +1087,41 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				}]
 			})
 		}
+		if(isPage("hmo/providers(.*)")){
+			t("../../datatables")({
+				url: "/api/user/fetch/sp",
+				order: [
+					[0, "desc"]
+				],
+				columns: [{
+					data: "id"
+				}, {
+					data: null,
+					render: function(t, e, a) {
+						return a.business_name
+					}
+				}, {
+					data: "email"
+				}, {
+					data: null,
+					render: function(t, e, a) {
+						return "<a href='/hmo/sp_report/" + a.id + "' target='_blank' class='btn btn-sm btn-primary'><i class='fa fa-th-list'></i> Report</a>"
+					}
+				}, {
+					data: "status",
+					render: function(t, e, a) {
+						return tmpl("status", a)
+					}
+				}, {
+					data: "created"
+				}]
+			})
+		}
 	}, {
 		"../../datatables": 87
 	}],
 	51: [function(t, e, a) {
-		isPage("(admin|hmo)/users(.*)") && (t("./dt"), t("./actions"), t("./vue-add-user"))
+		isPage("(admin|hmo)/(users|managers|providers)(.*)") && (t("./dt"), t("./actions"), t("./vue-add-user"))
 	}, {
 		"./actions": 49,
 		"./dt": 50,

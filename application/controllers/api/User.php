@@ -228,7 +228,7 @@ class User extends MY_Controller {
 
     }
 
-    public function fetch()
+    public function fetch($role = null)
     {
         (is_administrator() || is_hmo()) OR exit_json(1, "Unauthorized Access!");
         check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
@@ -237,14 +237,17 @@ class User extends MY_Controller {
             "role !=" => "admin"
         ];
 
+        if (isset($role)) $where['role'] = $role;
         if(is_hmo()) $where['hmo_id'] = userdata()->id;
 
         $user_objs = $this->User->fetch_dt($where);
 
-        foreach ($user_objs['data'] as &$user_obj) {
+        if (!isset($role)) {
+            foreach ($user_objs['data'] as &$user_obj) {
 
-            $user_obj['hmo'] = $user_obj['hmo_id'] != 0 ? $this->User->get(['id' => $user_obj['hmo_id']])->business_name : '-';
-            $user_obj['plan'] = $user_obj['plan_id'] != 0 ? $this->Plan->get(['id' => $user_obj['plan_id']])->name : '-';
+                $user_obj['hmo'] = $user_obj['hmo_id'] != 0 ? $this->User->get(['id' => $user_obj['hmo_id']])->business_name : '-';
+                $user_obj['plan'] = $user_obj['plan_id'] != 0 ? $this->Plan->get(['id' => $user_obj['plan_id']])->name : '-';
+            }
         }
 
         exit(json_encode(array_merge(['error' => 0], $user_objs), JSON_PRETTY_PRINT));

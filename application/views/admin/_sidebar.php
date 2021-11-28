@@ -23,6 +23,12 @@
                 </a>
             </li>
 
+            <li <?php menu_item(['admin\/managers', 'admin\/hmo_report']); ?> >
+                <a href="/admin/managers">
+                    <i class="fa fa-hospital-o"></i> <span>Health Managers</span>
+                </a>
+            </li>
+
             <li <?php menu_item('admin\/subscriptions'); ?> >
                 <a href="/admin/subscriptions">
                     <i class="fa fa-medkit"></i> <span>Subscriptions</span>
