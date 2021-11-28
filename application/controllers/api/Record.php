@@ -9,6 +9,8 @@ class Record extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
+
+        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
     }
 
     public function index_get($id)
@@ -142,8 +144,6 @@ class Record extends MY_Controller {
 
     public function fetch()
     {
-        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
-
         $where = [];
 
         if(is_hmo() || is_sp() || is_administrator()) $where["user_id !="] = userdata()->id;

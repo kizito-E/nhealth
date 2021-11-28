@@ -5,6 +5,8 @@ class User extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
+
+        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
     }
 
     public function index($id)
@@ -54,7 +56,6 @@ class User extends MY_Controller {
     public function create()
     {
         (is_administrator() || is_hmo()) OR exit_json(1, "Unauthorized Access!");
-        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
 
         $this->validation->make([
             "first_name"    => "trim|alpha|min_length[2]",
@@ -231,7 +232,6 @@ class User extends MY_Controller {
     public function fetch($role = null)
     {
         (is_administrator() || is_hmo()) OR exit_json(1, "Unauthorized Access!");
-        check_csrf_token() OR exit_json(1, "Invalid CSRF Token!");
 
         $where = [
             "role !=" => "admin"
