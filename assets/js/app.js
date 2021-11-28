@@ -35,9 +35,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				e = $(this).attr("data-action"),
 				a = "";
-			if("play" === e) a = "/api/admin/camp/play";
-			else if("stop" === e) a = "/api/admin/camp/stop";
-			else if("delete" === e && confirm("Confirm action?")) a = "/api/admin/camp/delete";
+			if("play" === e) a = "/api_v1/admin/camp/play";
+			else if("stop" === e) a = "/api_v1/admin/camp/stop";
+			else if("delete" === e && confirm("Confirm action?")) a = "/api_v1/admin/camp/delete";
 			else if("edit" === e) return void i.init(t.camp_id);
 			$.post(a, t, function(t) {
 				t.error ? ADFLEX.helpers.notifyError(t.message) : (ADFLEX.helpers.notifySuccess(t.message), $(document).trigger("adflex.dt.reload"))
@@ -52,7 +52,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	}],
 	7: [function(t, e, a) {
 		t("../../datatables")({
-			url: "/api/admin/camp/fetch",
+			url: "/api_v1/admin/camp/fetch",
 			data: {
 				filter_user_id: window.filter_user_id
 			},
@@ -151,7 +151,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				init: function() {
 					var e = this;
-					$.getJSON("/api/admin/camp/get_camp_template", function(t) {
+					$.getJSON("/api_v1/admin/camp/get_camp_template", function(t) {
 						t.error ? (ADFLEX.helpers.notifyError(t.message), e.button_active = !1) : (e.user_id = null, e.name = t.data.name, e.start_date = t.data.start_date, e.end_date = t.data.end_date, e.theme = t.data.theme, e.allowed_site_themes = t.data.allowed_site_themes, e.hours = t.data.hours, e.days = t.data.days, e.geos = t.data.geos, e.devs = t.data.devs, e.platforms = t.data.platforms, e.browsers = t.data.browsers, e.sites_bl = t.data.sites_bl, e.button_active = !1, e.is_complete = !1, e.$nextTick(function() {
 							$(this.$el).find(".selectpicker").selectpicker("refresh"), $(this.$el).find("._datepicker").datepicker({
 								autoclose: !0,
@@ -167,7 +167,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				addCamp: function() {
 					var e = this;
-					this.button_active = !0, $.post("/api/admin/camp/add", this.$data, function(t) {
+					this.button_active = !0, $.post("/api_v1/admin/camp/add", this.$data, function(t) {
 						t.error ? (ADFLEX.helpers.notifyError(t.message), e.button_active = !1) : (ADFLEX.helpers.notifySuccess(t.message), e.button_active = !1, e.is_complete = !0)
 					}, "json")
 				},
@@ -223,7 +223,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				init: function(t) {
 					var e = this;
-					$.getJSON("/api/admin/camp/get", {
+					$.getJSON("/api_v1/admin/camp/get", {
 						camp_id: t
 					}, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : (e.id = t.data.id, e.user_id = t.data.user_id, e.name = t.data.name, e.type = t.data.type, e.start_date = t.data.start_date, e.end_date = t.data.end_date, e.theme = t.data.theme, e.allowed_site_themes = t.data.allowed_site_themes.split(","), e.hours = t.data.hours.split(","), e.days = t.data.days.split(","), e.geos = t.data.geos.split(","), e.devs = t.data.devs.split(","), e.platforms = t.data.platforms.split(","), e.browsers = t.data.browsers.split(","), e.sites_bl = t.data.sites_bl, e.$nextTick(function() {
@@ -241,7 +241,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				updateCamp: function() {
 					var e = this;
-					this.button_active = !0, $.post("/api/admin/camp/update", this.$data, function(t) {
+					this.button_active = !0, $.post("/api_v1/admin/camp/update", this.$data, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : ADFLEX.helpers.notifySuccess(t.message), e.button_active = !1
 					}, "json")
 				},
@@ -273,7 +273,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	11: [function(t, e, a) {
 		if(isPage("admin/dashboard(.*)")) {
 			t("../../datatables")({
-				url: "/api/record/fetch",
+				url: "/api_v1/record/fetch",
 				data: {},
 				order: [
 					[0, "desc"]
@@ -312,7 +312,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		}
 		if(isPage("hmo/dashboard(.*)")) {
 			t("../../datatables")({
-				url: "/api/record/fetch",
+				url: "/api_v1/record/fetch",
 				data: {},
 				order: [
 					[0, "desc"]
@@ -349,7 +349,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		}
 		if(isPage("serviceprovider/dashboard(.*)")) {
 			t("../../datatables")({
-				url: "/api/record/fetch",
+				url: "/api_v1/record/fetch",
 				data: {},
 				order: [
 					[0, "desc"]
@@ -396,7 +396,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				methods: {
 					addService: function() {
 						var e = this;
-						e.error = !1, $.post("/api/record/create", e.$data, function(t) {
+						e.error = !1, $.post("/api_v1/record/create", e.$data, function(t) {
 							t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message)
 						}, "json")
 					}
@@ -405,7 +405,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		}
 		if(isPage("beneficiary/dashboard(.*)")) {
 			t("../../datatables")({
-				url: "/api/record/fetch",
+				url: "/api_v1/record/fetch",
 				data: {},
 				order: [
 					[0, "desc"]
@@ -447,7 +447,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	15: [function(t, e, a) {
 		$(document).on("click", ".payment-details-btn", function() {
 			var t = $(this).attr("data-payment-id");
-			$.getJSON("/api/admin/payment/get", {
+			$.getJSON("/api_v1/admin/payment/get", {
 				payment_id: t
 			}, function(t) {
 				t.error ? ADFLEX.helpers.notifyError(t.message) : $(tmpl("payment-details-modal", t.data)).modal()
@@ -456,7 +456,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	}, {}],
 	16: [function(t, e, a) {
 		t("../../datatables")({
-			url: "/api/admin/payment/fetch",
+			url: "/api_v1/admin/payment/fetch",
 			data: {
 				filter_user_id: window.filter_user_id
 			},
@@ -529,7 +529,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	}],
 	19: [function(t, e, a) {
 		t("../../datatables")({
-			url: "/api/admin/payout/fetch",
+			url: "/api_v1/admin/payout/fetch",
 			data: {
 				filter_user_id: window.filter_user_id
 			},
@@ -598,7 +598,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				init: function(t) {
 					var e = this;
-					$.getJSON("/api/admin/payout/get", {
+					$.getJSON("/api_v1/admin/payout/get", {
 						id: t
 					}, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : (e.id = t.data.id, e.payout_account = t.data.payout_account, e.amount = t.data.amount, e.description = t.data.description, $(e.$el).modal({
@@ -627,7 +627,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				init: function(t) {
 					var e = this;
-					$.getJSON("/api/admin/payout/get", {
+					$.getJSON("/api_v1/admin/payout/get", {
 						id: t
 					}, function(t) {
 						t.error ? notifyError(t.message) : (e.id = t.data.id, e.payout_account = t.data.payout_account, e.amount = t.data.amount, e.currency = t.data.currency, e.details = t.data.details, $(e.$el).modal({
@@ -638,13 +638,13 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				end_success: function() {
 					var e = this;
-					this.success_button_active = !0, $.post("/api/admin/payout/end_success", this.$data, function(t) {
+					this.success_button_active = !0, $.post("/api_v1/admin/payout/end_success", this.$data, function(t) {
 						t.error ? (notifyError(t.message), e.$refs.end_success.end()) : (notifySuccess(t.message), e.closeModal())
 					}, "json")
 				},
 				end_error: function() {
 					var e = this;
-					this.error_button_active = !0, $.post("/api/admin/payout/end_error", this.$data, function(t) {
+					this.error_button_active = !0, $.post("/api_v1/admin/payout/end_error", this.$data, function(t) {
 						t.error ? (notifyError(t.message), e.$refs.end_error.end()) : (notifyInfo(t.message), e.closeModal())
 					}, "json")
 				},
@@ -676,7 +676,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				init: function(t) {
 					var e = this;
-					$.getJSON("/api/admin/payout/get", {
+					$.getJSON("/api_v1/admin/payout/get", {
 						id: t
 					}, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : (e.id = t.data.id, e.payout_account = t.data.payout_account, e.amount = t.data.amount, e.currency = t.data.currency, e.description = t.data.description, $(e.$el).modal({
@@ -687,7 +687,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				start: function() {
 					var e = this;
-					this.button_active = !0, $.post("/api/admin/payout/start", this.$data, function(t) {
+					this.button_active = !0, $.post("/api_v1/admin/payout/start", this.$data, function(t) {
 						t.error ? (notifyError(t.message), e.$refs.start.end()) : (notifySuccess(t.message), e.closeModal())
 					}, "json")
 				},
@@ -732,7 +732,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				update: function() {
 					var e = this;
-					e.error = !1, $.post("/api/user/update_password", e.$data, function(t) {
+					e.error = !1, $.post("/api_v1/user/update_password", e.$data, function(t) {
 						t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message)
 					}, "json")
 				}
@@ -749,12 +749,12 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				e = $(this).attr("data-action"),
 				a = "";
-			if("play" === e) a = "/api/admin/site/play";
-			else if("stop" === e) a = "/api/admin/site/stop";
+			if("play" === e) a = "/api_v1/admin/site/play";
+			else if("stop" === e) a = "/api_v1/admin/site/stop";
 			else if("ban" === e) {
 				if(t.ban_message = prompt("Specify the reason for the ban.", ""), !t.ban_message) return;
-				a = "/api/admin/site/ban"
-			} else if("unban" === e) a = "/api/admin/site/unban";
+				a = "/api_v1/admin/site/ban"
+			} else if("unban" === e) a = "/api_v1/admin/site/unban";
 			else {
 				if("edit" === e) return void i.init(t.site_id);
 				if("moderate" === e) return void n.init(t.site_id)
@@ -773,7 +773,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	}],
 	29: [function(t, e, a) {
 		t("../../datatables")({
-			url: "/api/subscription/fetch",
+			url: "/api_v1/subscription/fetch",
 			data: {},
 			order: [
 				[0, "desc"]
@@ -822,7 +822,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				addSite: function() {
 					var e = this;
-					this.button_active = !0, $.post("/api/admin/site/add", this.$data, function(t) {
+					this.button_active = !0, $.post("/api_v1/admin/site/add", this.$data, function(t) {
 						t.error ? (ADFLEX.helpers.notifyError(t.message), e.button_active = !1) : (ADFLEX.helpers.notifySuccess(t.message), e.button_active = !1, e.is_complete = !0)
 					}, "json")
 				},
@@ -861,7 +861,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 			methods: {
 				update: function() {
 					var e = this;
-					this.button_active = !0, $.post("/api/admin/site/update", this.$data, function(t) {
+					this.button_active = !0, $.post("/api_v1/admin/site/update", this.$data, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : ADFLEX.helpers.notifySuccess(t.message), e.button_active = !1
 					}, "json")
 				},
@@ -872,7 +872,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				init: function(t) {
 					var e = this;
-					$.getJSON("/api/admin/site/get", {
+					$.getJSON("/api_v1/admin/site/get", {
 						site_id: t
 					}, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : (e.site_id = t.data.site_id, e.isolated = t.data.isolated, e.domain = t.data.domain, e.theme = t.data.theme, e.allowed_camp_themes = t.data.allowed_camp_themes.split(","), e.stat_url = t.data.stat_url, e.stat_login = t.data.stat_login, e.stat_password = t.data.stat_password, e.$nextTick(function() {
@@ -916,7 +916,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 							allowed_camp_themes: this.allowed_camp_themes,
 							status_message: this.reject_message
 						};
-						this.button_reject_active = !0, $.post("/api/admin/site/moderate", t, function(t) {
+						this.button_reject_active = !0, $.post("/api_v1/admin/site/moderate", t, function(t) {
 							t.error ? ADFLEX.helpers.notifyError(t.message) : ADFLEX.helpers.notifySuccess(t.message), e.button_reject_active = !1
 						}, "json")
 					}
@@ -930,7 +930,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 							allowed_camp_themes: this.allowed_camp_themes,
 							status_message: ""
 						};
-					this.button_success_active = !0, $.post("/api/admin/site/moderate", t, function(t) {
+					this.button_success_active = !0, $.post("/api_v1/admin/site/moderate", t, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : ADFLEX.helpers.notifySuccess(t.message), e.button_success_active = !1
 					}, "json")
 				},
@@ -943,7 +943,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 							csrf: ADFLEX.csrf,
 							site_id: t
 						};
-					$.getJSON("/api/admin/site/get", a, function(t) {
+					$.getJSON("/api_v1/admin/site/get", a, function(t) {
 						t.error ? ADFLEX.helpers.notifyError(t.message) : (e.site_id = t.data.site_id, e.domain = t.data.domain, e.theme = t.data.theme, e.allowed_camp_themes = t.data.allowed_camp_themes.split(","), e.stat_url = t.data.stat_url, e.stat_login = t.data.stat_login, e.stat_password = t.data.stat_password, e.$nextTick(function() {
 							$(".selectpicker").selectpicker("refresh")
 						}), $(e.$el).modal())
@@ -967,7 +967,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	49: [function(t, e, a) {
 		function s(t, e) {
 			var a = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : "";
-			$.post("/api/admin/user/" + e, {
+			$.post("/api_v1/admin/user/" + e, {
 				id: t,
 				message: a
 			}, function(t) {
@@ -987,7 +987,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 	50: [function(t, e, a) {
 		if(isPage("admin/users(.*)")){
 			t("../../datatables")({
-				url: "/api/user/fetch",
+				url: "/api_v1/user/fetch",
 				order: [
 					[0, "desc"]
 				],
@@ -1024,7 +1024,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		}
 		if(isPage("admin/managers(.*)")){
 			t("../../datatables")({
-				url: "/api/user/fetch/hmo",
+				url: "/api_v1/user/fetch/hmo",
 				order: [
 					[0, "desc"]
 				],
@@ -1054,7 +1054,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		}
 		if(isPage("hmo/users(.*)")){
 			t("../../datatables")({
-				url: "/api/user/fetch",
+				url: "/api_v1/user/fetch",
 				order: [
 					[0, "desc"]
 				],
@@ -1089,7 +1089,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		}
 		if(isPage("hmo/providers(.*)")){
 			t("../../datatables")({
-				url: "/api/user/fetch/sp",
+				url: "/api_v1/user/fetch/sp",
 				order: [
 					[0, "desc"]
 				],
@@ -1152,7 +1152,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				},
 				addUser: function() {
 					var e = this;
-					e.randomPassword(), e.error = !1, $.post("/api/user/create", e.$data, function(t) {
+					e.randomPassword(), e.error = !1, $.post("/api_v1/user/create", e.$data, function(t) {
 						t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message, e.activation_link = t.data.activation_link)
 					}, "json")
 				}
@@ -1740,7 +1740,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 					var e = this;
 					if(this.$emit("input", this.query), 0 != this.query.length) {
 						this.loading = !0;
-						var t = this.api_url ? this.api_url : "/api/admin/user/search";
+						var t = this.api_url ? this.api_url : "/api_v1/admin/user/search";
 						$.getJSON(t, {
 							q: this.query
 						}, function(t) {
