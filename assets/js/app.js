@@ -341,6 +341,11 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 						return a.status.toUpperCase()
 					}
 				}, {
+					data: null,
+					render: function(t, e, a) {
+					return tmpl("service-actions", a)
+					}
+				}, {
 					data: "date_initiated"
 				}, {
 					data: "date_completed"
@@ -434,10 +439,29 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 						return a.status.toUpperCase()
 					}
 				}, {
+					data: null,
+					render: function(t, e, a) {
+					return tmpl("service-actions", a)
+					}
+				}, {
 					data: "date_initiated"
 				}, {
 					data: "date_completed"
 				}]
+			})
+		}
+		if(isPage("(hmo|beneficiary)/dashboard(.*)")) {
+			function s(t, e) {
+				$.post("/api_v1/record/update_status/" + e, {
+					id: t
+				}, function(t) {
+					$(document).trigger("adflex.dt.reload")
+				}, "json")
+			}
+			$(document).on("click", ".item-action", function() {
+				var t = $(this).attr("data-id"),
+					e = $(this).attr("data-action");
+				s(t, e)
 			})
 		}
 	}, {

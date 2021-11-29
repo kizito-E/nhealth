@@ -90,6 +90,7 @@
                                                 <th>Cost</th>
                                                 <th>Claim Amount</th>
                                                 <th>Status</th>
+                                                <th>Actions</th>
                                                 <th>Initiated</th>
                                                 <th>Completed</th>
                                             </tr>

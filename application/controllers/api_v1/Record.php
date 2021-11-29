@@ -79,7 +79,7 @@ class Record extends MY_Controller {
 
     }
 
-    public function update_post()
+    public function update()
     {
         $this->validation->make([
             "sp_id"      => "trim|required|numeric",
@@ -133,6 +133,18 @@ class Record extends MY_Controller {
         if (!$record_obj) exit_json(null, self::HTTP_INTERNAL_ERROR);
 
         exit_json(['status' => 'success', 'record' => (array) $record_obj], self::HTTP_CREATED);
+
+    }
+
+    public function update_status($status)
+    {
+        $update['status'] = $status;
+        if ($status == 'completed') $update['date_completed'] = date('Y-m-d H:i:s');
+        if ($status == 'approve')   $update['status'] = 'pending fulfillment';
+
+        $record_obj = $this->Record->update(['id' => $this->input->post('id')], $update);
+
+        exit_json(0, "Success");
 
     }
 
