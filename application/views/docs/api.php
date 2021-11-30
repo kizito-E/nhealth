@@ -111,6 +111,7 @@
                                                 <li>first_name</li>
         										<li>last_name</li>
         										<li>business_name</li>
+                                                <li>plan_id (One of these: 1,2 or 3)</li>
         									</ul>
                                         </div>
                                     </div><!--//row-->
@@ -165,6 +166,7 @@
         										<li>last_name</li>
         										<li>business_name</li>
                                                 <li>status (must be 0 or 1)</li>
+                                                <li>plan_id (One of these: 1,2 or 3)</li>
         									</ul>
                                         </div>
                                     </div><!--//row-->
