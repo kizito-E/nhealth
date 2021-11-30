@@ -67,6 +67,7 @@ class User extends REST_Controller {
             "email"         => "trim|required|valid_email|is_unique[users.email]",
             "password"      => "trim|required|min_length[8]|max_length[20]",
             "role"          => "required|in_list[beneficiary,hmo,sp,admin]",
+            "plan_id"       => "numeric|in_list[1,2,3]",
         ], [
             "first_name.*"           => "Please provide a valid first name!",
             "last_name.*"            => "Please provide a valid last name!",
@@ -78,6 +79,7 @@ class User extends REST_Controller {
             "password.min_length"    => "Password must be at least {param} сharacters!",
             "password.max_length"    => "Password cannot be more than {param} сharacters!",
             "role.*"                 => "Please provide a valid account role!",
+            "plan_id.*"              => "Please provide a valid plan id!",
         ]);
 
         if ($this->validation->status() === false) {
@@ -88,6 +90,7 @@ class User extends REST_Controller {
             'first_name'    => isset($params['first_name']) ? $params['first_name'] : '',
             'last_name'     => isset($params['last_name']) ? $params['last_name'] : '',
             'business_name' => isset($params['business_name']) ? $params['business_name'] : '',
+            'plan_id'       => isset($params['plan_id']) ? $params['plan_id'] : 0,
             'email'         => $params['email'],
             'password'      => superhash($params['password']),
             'role'          => $params['role'],
@@ -112,6 +115,7 @@ class User extends REST_Controller {
             "last_name"     => "trim|alpha|min_length[2]",
             "business_name" => "trim|alpha|min_length[2]",
             "status"        => "numeric|in_list[0,1]",
+            "plan_id"       => "numeric|in_list[1,2,3]",
         ], [
             "user_id.required"       => "Please provide a valid user id!",
             "user_id.numeric"        => "User id must be numeric!",
@@ -119,6 +123,7 @@ class User extends REST_Controller {
             "last_name.*"            => "Please provide a valid last name!",
             "business_name.*"        => "Please provide a valid business name!",
             "status.*"               => "Please provide a valid account status!",
+            "plan_id.*"              => "Please provide a valid plan id!",
         ]);
 
         if ($this->validation->status() === false) {
@@ -139,6 +144,7 @@ class User extends REST_Controller {
             'last_name'     => isset($params['last_name']) ? $params['last_name'] : $user->last_name,
             'business_name' => isset($params['business_name']) ? $params['business_name'] : $user->business_name,
             'status'        => isset($params['status']) ? $params['status'] : $user->status,
+            'plan_id'       => isset($params['plan_id']) ? $params['plan_id'] : 0,
         ]);
 
         if (!$user_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
