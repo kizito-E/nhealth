@@ -139,9 +139,9 @@ class Auth extends MY_Controller
         $this->validation->make([
             "email" => "required|valid_email|is_exists[users.email]"
         ], [
-            "email.required"    => __("Email не может быть пустым!"),
-            "email.valid_email" => __("Некорректный email!"),
-            "email.is_exists"   => __("Такого email нет в системе!"),
+            "email.required"    => "Please enter a valid email",
+            "email.valid_email" => "Please enter a valid email",
+            "email.is_exists"   => "Email/account not found!",
         ]);
 
         if ($this->validation->status() === false) {
@@ -153,8 +153,13 @@ class Auth extends MY_Controller
         ]);
 
         if (!$reset_token) {
-            exit_json(1, __("Ошибка!"));
+            exit_json(1, "An error occured!");
         }
+
+        event("user.forgot_password", (object) [
+            'email'       => $this->input->post('email'),
+            'reset_token' => $reset_token,
+        ]);
 
         exit_json();
     }

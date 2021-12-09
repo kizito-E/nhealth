@@ -47,7 +47,7 @@
 
                 </div>
 
-                <a href="/auth/login/">Login</a><br>
+                <a href="/auth/login/">Return to login</a><br>
 
             </div>
 
@@ -55,7 +55,7 @@
 
                 <p class="login-box-msg">Reset your password</p>
 
-                <div class="callout callout-success animated fadeIn">Success! Instructions sent to your email address</div>
+                <div class="callout callout-success animated fadeIn">Success! Password reset instructions sent to your email address</div>
             </div>
 
         </div>

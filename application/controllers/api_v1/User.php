@@ -94,6 +94,8 @@ class User extends MY_Controller {
             'email' => $params['email']
         ]);
 
+        event("user.register", $user_obj);
+
         exit_json(0, 'Success: User enrolled!', $user_obj);
 
     }
