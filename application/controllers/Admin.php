@@ -46,7 +46,7 @@ class Admin extends MY_Controller
         $this->load->view('admin/managers/managers', $this->viewdata + []);
     }
 
-    public function hmo_report($id = null)
+    public function hmo_report($id = null, $action = null)
     {
         if (!isset($id) || !is_numeric($id)) show_404();
 
@@ -72,7 +72,11 @@ class Admin extends MY_Controller
             'amount_due'    => $amount_due
         ];
 
-        $this->load->view('admin/managers/report', $this->viewdata + $data);
+        if (isset($action) && $action == 'print') {
+            $this->load->view('admin/managers/print_report', $this->viewdata + $data);
+        } else {
+            $this->load->view('admin/managers/report', $this->viewdata + $data);
+        }
     }
 
     public function subscriptions()

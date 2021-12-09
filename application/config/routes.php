@@ -55,3 +55,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller']   = 'main';
 $route['404_override']         = '';
 $route['translate_uri_dashes'] = false;
+
+$route['hmo/print_report/(:num)'] = 'hmo/sp_report/$1/print';
+$route['admin/print_report/(:num)'] = 'admin/hmo_report/$1/print';

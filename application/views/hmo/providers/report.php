@@ -103,7 +103,7 @@
                     <!-- this row will not appear when printing -->
                     <div class="row no-print">
                         <div class="col-xs-12">
-                            <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                            <a href="<?php echo "/hmo/print_report/{$sp_id}" ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                         </div>
                     </div>
                 </section>

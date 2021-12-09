@@ -47,7 +47,7 @@ class Hmo extends MY_Controller
         $this->load->view('hmo/providers/providers', $this->viewdata + []);
     }
 
-    public function sp_report($id = null)
+    public function sp_report($id = null, $action = null)
     {
         if (!isset($id) || !is_numeric($id)) show_404();
 
@@ -72,7 +72,11 @@ class Hmo extends MY_Controller
             'amount_due'    => $amount_due
         ];
 
-        $this->load->view('hmo/providers/report', $this->viewdata + $data);
+        if (isset($action) && $action == 'print') {
+            $this->load->view('hmo/providers/print_report', $this->viewdata + $data);
+        } else {
+            $this->load->view('hmo/providers/report', $this->viewdata + $data);
+        }
     }
 
     public function subscriptions()
