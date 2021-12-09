@@ -48,7 +48,7 @@
                 </div>
 
                 <a href="/auth/login/">Return to login</a><br>
-
+                
             </div>
 
             <div v-cloak v-else class="register-box-body">
