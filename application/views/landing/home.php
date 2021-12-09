@@ -120,7 +120,7 @@
                 <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Administrator</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Health Manager (HMOs)</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Health Maintainance Organizations (HMOs)</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Health Service Providers</a>
@@ -135,14 +135,14 @@
               <div class="tab-pane active show" id="tab-1">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <p>Administrators can enroll beneficiaries, health management organizations, and health service providers. The get an overview of the utilization of the scheme and can print report that shows the actual amount payable to health management organizations at the end of each month</p>
+                    <p>Administrators can enroll beneficiaries, health maintainance officers, and health service providers. The get an overview of the utilization of the scheme and can print report that shows the actual amount payable to health maintainance organizations at the end of each month</p>
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="tab-2">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <p>Health managers can enroll beneficiaries and service providers. They get a list of health claims made by beneficiaries through a health service provider of which they can approve, decline, or mark as complete when the service is fufilled</p>
+                    <p>Health maintainance officers can enroll beneficiaries and service providers. They get a list of health claims made by beneficiaries through a health service provider of which they can approve, decline, or mark as complete when the service is fufilled</p>
                   </div>
                 </div>
               </div>
@@ -156,7 +156,7 @@
               <div class="tab-pane" id="tab-4">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <p>Beneficiaries of the scheme can track the status of their health claims resulting from a reuested service and can easily update its status if their health manager fails to do so within a reasonable time frame.</p>
+                    <p>Beneficiaries of the scheme can track the status of their health claims resulting from a reuested service and can easily update its status if their health maintainance officer fails to do so within a reasonable time frame.</p>
                   </div>
                 </div>
               </div>
