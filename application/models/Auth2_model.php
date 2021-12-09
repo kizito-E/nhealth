@@ -28,11 +28,11 @@ class Auth2_model extends MY_Model {
         ]);
 
         if (!$userdata) {
-            throw new Exception(__("Incorrect Credentials!"));
+            throw new Exception("Incorrect Credentials!");
         }
 
         if ($userdata->status != 1) {
-            throw new Exception(__("Аccount Inactive!"));
+            throw new Exception("Аccount Inactive!");
         }
 
         $this->session->set_userdata((array) $userdata);

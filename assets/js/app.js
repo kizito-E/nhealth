@@ -402,7 +402,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 					addService: function() {
 						var e = this;
 						e.error = !1, $.post("/api_v1/record/create", e.$data, function(t) {
-							t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message)
+							t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message, $(document).trigger("adflex.dt.reload"))
 						}, "json")
 					}
 				}
@@ -1177,7 +1177,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 				addUser: function() {
 					var e = this;
 					e.randomPassword(), e.error = !1, $.post("/api_v1/user/create", e.$data, function(t) {
-						t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message, e.activation_link = t.data.activation_link)
+						t.error ? (e.error = !0, e.status_message = t.message) : (e.status_message = t.message, e.activation_link = t.data.activation_link, $(document).trigger("adflex.dt.reload"))
 					}, "json")
 				}
 			}
@@ -1258,10 +1258,11 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 		new Vue({
 			el: "#app-reset-password",
 			data: {
+				step_two: !1,
 				new_password: "",
-				error_message: "",
+				status_message: "",
 				active_button: !1,
-				step_two: !1
+				error: !1
 			},
 			methods: {
 				resetPassword: function() {
@@ -1270,8 +1271,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
 							new_password: e.new_password,
 							reset_pass_token: location.href.split("/")[5]
 						};
-					e.active_button = !0, $.post("/auth/api_reset_password", t, function(t) {
-						t.error ? (e.error_message = t.message, e.active_button = !1) : (e.error_message = "", e.step_two = !0)
+					e.active_button = !0, e.error = !1, e.status_message = "", e.step_two = !1, $.post("/auth/api_reset_password", t, function(t) {
+						t.error ? (e.status_message = t.message, e.error = !0, e.active_button = !1) : (e.status_message = t.message, e.step_two = !0)
 					}, "json")
 				}
 			}

@@ -52,7 +52,7 @@ class User extends MY_Controller {
         $this->validation->make([
             "first_name"    => "trim|alpha|min_length[2]",
             "last_name"     => "trim|alpha|min_length[2]",
-            "business_name" => "trim|alpha|min_length[2]",
+            "business_name" => "trim|min_length[2]",
             "email"         => "trim|required|valid_email|is_unique[users.email]",
             "password"      => "trim|required|min_length[8]|max_length[20]",
             "role"          => "required|in_list[beneficiary,hmo,sp,admin]",
@@ -90,7 +90,7 @@ class User extends MY_Controller {
 
         if (!$user_obj) exit_json(1, 'Error: Unable to create user.');
 
-        $user_obj->activation_link = base_url() . "reset_password/" . $this->User->generate_reset_password_token([
+        $user_obj->activation_link = base_url() . "auth/set_password/" . $this->User->generate_reset_password_token([
             'email' => $params['email']
         ]);
 

@@ -44,10 +44,10 @@ class Auth extends MY_Controller
     }
 
 
-    public function reset_password()
+    public function set_password()
     {
         if ($this->Auth2->is_logged()) {
-            redirect("/");
+            redirect("main/dashboard");
         }
 
         $this->load->view('auth/reset_password');
@@ -163,7 +163,7 @@ class Auth extends MY_Controller
     public function api_reset_password()
     {
         if ($this->Auth2->is_logged()) {
-            exit_json(1, "An error occurred");
+            exit_json(1, "Error! You're already logged in.");
         }
 
         if (!check_csrf_token()) {
@@ -174,32 +174,25 @@ class Auth extends MY_Controller
             "reset_pass_token" => "required|is_exists[users.reset_pass_token]",
             "new_password"     => "required|min_length[8]|max_length[20]"
         ], [
-            "reset_pass_token.*"      => __("Ошибка сброса пароля!"),
-            "new_password.required"   => __("Пароль не может быть пустым!"),
-            "new_password.min_length" => __("Длина пароля должна быть не менее {param} символов!"),
-            "new_password.max_length" => __("Длина пароля должна быть не более {param} символов!"),
+            "reset_pass_token.*"      => "Invalid password reset/activation link!",
+            "new_password.required"   => "Please enter a valid password!",
+            "new_password.min_length" => "The provided password must be at least 8 characters",
+            "new_password.max_length" => "The provided password must be at most 20 characters",
         ]);
 
         if ($this->validation->status() === false) {
             exit_json(1, $this->validation->first_error());
         }
 
-        $userdata = $this->User2->get([
-            'reset_pass_token' => $this->input->post("reset_pass_token"),
-        ]);
-
-        $userdata->plain_password = $this->input->post("new_password");
-
-        $this->User2->update([
+        $userdata = $this->User2->update([
             'reset_pass_token' => $this->input->post("reset_pass_token"), // where
         ], [
             'password'         => superhash($this->input->post("new_password")),
             'reset_pass_token' => null,
+            'status'           => 1
         ]);
 
-        //event("user.reset_password", $userdata);
-
-        exit_json();
+        exit_json(0, "Success!");
     }
 
 }
