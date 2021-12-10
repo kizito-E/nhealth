@@ -254,8 +254,7 @@ class User extends REST_Controller {
             'id'      => $params['record_id'],
             'user_id' => $params['user_id']
         ],[
-            'status'      => 'pending fulfillment',
-            'date_completed'=> date('Y-m-d H:i:s')
+            'status'      => 'pending fulfillment'
         ]);
 
         if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
@@ -297,13 +296,16 @@ class User extends REST_Controller {
             $this->response(['error' => 'Error! Invalid user id or service isn\'t pending approval or fulfillment.'], self::HTTP_NOT_ACCEPTABLE);
         }
 
+        $update = [
+            'status'      => $params['status']
+        ];
+
+        if ($params['status'] == 'completed') $update['date_completed'] = date('Y-m-d H:i:s');
+
         $record_obj = $this->Record->update([
             'id'      => $params['record_id'],
             'user_id' => $params['user_id']
-        ],[
-            'status'      => $params['status'],
-            'date_updated'=> date('Y-m-d H:i:s')
-        ]);
+        ], $update);
 
         if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
 
