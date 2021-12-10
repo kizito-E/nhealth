@@ -255,7 +255,7 @@ class User extends REST_Controller {
             'user_id' => $params['user_id']
         ],[
             'status'      => 'pending fulfillment',
-            'date_updated'=> date('Y-m-d H:i:s')
+            'date_completed'=> date('Y-m-d H:i:s')
         ]);
 
         if (!$record_obj) $this->response(null, self::HTTP_INTERNAL_ERROR);
