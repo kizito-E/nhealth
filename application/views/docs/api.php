@@ -336,7 +336,7 @@
         "amount_due": "200.00",
         "status": "pending fulfillment",
         "date_initiated": "2021-10-07 19:32:42",
-        "date_updated": "2021-10-07 21:02:49"
+        "date_completed": "2021-10-07 21:02:49"
     }
 }</code></pre>
                                         </div>
@@ -388,7 +388,7 @@
         "amount_due": "200.00",
         "status": "completed",
         "date_initiated": "2021-10-07 19:32:42",
-        "date_updated": "2021-10-07 21:06:39"
+        "date_completed": "2021-10-07 21:06:39"
     }
 }</code></pre>
                                         </div>
@@ -731,7 +731,7 @@
         "amount_due": "300.00",
         "status": "pending approval",
         "date_initiated": "2021-10-07 19:46:31",
-        "date_updated": "0000-00-00 00:00:00"
+        "date_completed": "0000-00-00 00:00:00"
     }
 }</code></pre>
                                         </div>
@@ -788,7 +788,7 @@
         "amount_due": "200.00",
         "status": "pending approval",
         "date_initiated": "2021-10-07 19:32:42",
-        "date_updated": "2021-10-07 20:54:44"
+        "date_completed": "2021-10-07 20:54:44"
     }
 }</code></pre>
                                         </div>
@@ -836,7 +836,7 @@
         "amount_due": "200.00",
         "status": "pending approval",
         "date_initiated": "2021-10-07 19:45:10",
-        "date_updated": "0000-00-00 00:00:00"
+        "date_completed": "0000-00-00 00:00:00"
     }
 }</code></pre>
                                         </div>
@@ -868,7 +868,7 @@
             "amount_due": "200.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:32:42",
-            "date_updated": "2021-10-07 20:54:44"
+            "date_completed": "2021-10-07 20:54:44"
         },
         {
             "id": "2",
@@ -880,7 +880,7 @@
             "amount_due": "300.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:36:07",
-            "date_updated": "0000-00-00 00:00:00"
+            "date_completed": "0000-00-00 00:00:00"
         },
         {
             "id": "3",
@@ -892,7 +892,7 @@
             "amount_due": "200.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:45:10",
-            "date_updated": "0000-00-00 00:00:00"
+            "date_completed": "0000-00-00 00:00:00"
         },
         {
             "id": "4",
@@ -904,7 +904,7 @@
             "amount_due": "200.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:46:31",
-            "date_updated": "0000-00-00 00:00:00"
+            "date_completed": "0000-00-00 00:00:00"
         }
     ]
 }</code></pre>
@@ -937,7 +937,7 @@
             "amount_due": "200.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:32:42",
-            "date_updated": "2021-10-07 20:54:44"
+            "date_completed": "2021-10-07 20:54:44"
         },
         {
             "id": "2",
@@ -949,7 +949,7 @@
             "amount_due": "300.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:36:07",
-            "date_updated": "0000-00-00 00:00:00"
+            "date_completed": "0000-00-00 00:00:00"
         },
         {
             "id": "3",
@@ -961,7 +961,7 @@
             "amount_due": "200.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:45:10",
-            "date_updated": "0000-00-00 00:00:00"
+            "date_completed": "0000-00-00 00:00:00"
         },
         {
             "id": "4",
@@ -973,7 +973,7 @@
             "amount_due": "200.00",
             "status": "pending approval",
             "date_initiated": "2021-10-07 19:46:31",
-            "date_updated": "0000-00-00 00:00:00"
+            "date_completed": "0000-00-00 00:00:00"
         }
     ]
 }</code></pre>
